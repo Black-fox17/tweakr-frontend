@@ -33,7 +33,7 @@ const Hero = () => {
             <div className='section-padding'>
                 <div className='w-full bg-white bg-opacity-10 p-4 py-8 md:p-8 lg:p-10 my-10 rounded-[2rem] sm:rounded-[3rem]'>
                     <div className='max-w-[56rem] min-h-[180px] font-semibold '>
-                        <h1 className="text-[3.5rem] sm:text-[4rem] lg:text-[4.5rem] font-normal leading-[1] mb-7 typing"
+                        <h1 className="text-[3.5rem] sm:text-[4rem] text-justify lg:text-[4.5rem] font-normal leading-[1] mb-7 typing"
                             style={{ animationDelay: '8s' }}>
                             You Write, <br />We Help You Reference!
                         </h1>

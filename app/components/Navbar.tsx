@@ -5,16 +5,13 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import { usePathname } from 'next/navigation'
-// import MobileNavigation from './MobileNavigation'
+import MobileNavigation from './MobileNavigation'
 
 export const navElements = [
     { name: 'About', link: '/about' },
     { name: 'Services', link: '/service' },
     { name: 'Portfolio', link: '/service#portfolio' },
-    { name: 'studio', link: '/studio' },
-    { name: 'foundation', link: '/fundation' },
     { name: 'career', link: '/career' },
-    { name: 'blog', link: '/blog' },
 ]
 
 const Navbar = () => {
@@ -36,7 +33,7 @@ const Navbar = () => {
         };
     }, []);
     return (
-        <nav className={`section-padding font-semibold text-4 fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-[1rem] ${scrolled ? 'border-b-[2px] border-darkgray' : ''}`}>
+        <nav className={`section-padding font-semibold text-4 fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-[0.5rem] ${scrolled ? 'border-b-[2px] border-darkgray' : ''}`}>
             <div className='mx-auto'>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center justify-between gap-20'>
@@ -70,9 +67,9 @@ const Navbar = () => {
                             <Link href="/signup">Get Started</Link>
                         </Button>
                     </div>
-                    {/* <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-3 pb-[0.4rem] md:hidden cursor-pointer">
+                    <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-3 pb-[0.4rem] md:hidden cursor-pointer">
                         <MobileNavigation />
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </nav>

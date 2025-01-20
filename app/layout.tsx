@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -29,7 +28,6 @@ export default function RootLayout({
         <main className="w-full mt-[4rem]">
           {children}
         </main>
-        <Footer />
       </body>
     </html>
   );

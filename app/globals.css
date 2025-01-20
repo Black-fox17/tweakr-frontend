@@ -78,6 +78,89 @@ body {
   }
 }
 
+  .h1 {
+    @apply text-[34px] leading-[42px] font-bold;
+  }
+
+ .body-2 {
+    @apply text-[14px] leading-[20px] font-normal;
+  }
+    .button {
+    @apply text-[14px] leading-[20px] font-medium;
+  }
+    .primary-btn {
+    @apply bg-brand hover:bg-brand-100 transition-all rounded-full button !important;
+  }
+  .caption {
+    @apply text-[12px] leading-[16px] font-normal;
+  }
+  .overline {
+    @apply text-[10px] leading-[14px] font-normal;
+  }
+
+  /* =====  SHADCN OVERRIDES */
+  .shad-no-focus {
+    @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+  }
+  .shad-input {
+    @apply border-none shadow-none p-2 shad-no-focus placeholder:text-light-200 body-2 !important;
+  }
+
+  .shad-form-item {
+    @apply flex h-[78px] flex-col justify-center rounded-xl border border-light-300 px-4 shadow-drop-1;
+  }
+  .shad-form-label {
+    @apply text-light-100 pt-2 pl-1 body-2 w-full !important;
+  }
+  .shad-form-message {
+    @apply text-red body-2 ml-4 !important;
+  }
+  .shad-alert-dialog {
+    @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl md:rounded-[30px] px-4 md:px-8 py-10 bg-white outline-none !important;
+  }
+  .shad-submit-btn {
+    @apply bg-brand button hover:bg-brand-100 transition-all rounded-full !important;
+  }
+  .shad-otp {
+    @apply w-full flex gap-1 sm:gap-2 justify-between !important;
+  }
+  .shad-otp-slot {
+    @apply text-[40px] font-medium rounded-xl ring-brand shadow-drop-1 text-brand-100 justify-center flex border-2 border-light-300 size-12 md:size-16 gap-5 !important;
+  }
+
+  .shad-sheet {
+    @apply pt-0 !important;
+  }
+  .shad-sheet button,
+  .shad-dialog button {
+    @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+  }
+  .shad-dropdown-item {
+    @apply cursor-pointer !important;
+  }
+  .shad-dialog {
+    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8   !important;
+  }
+  .shad-chart-title {
+    @apply text-white !important;
+  }
+  .shad-select-item {
+    @apply cursor-pointer !important;
+  }
+
+  .auth-form {
+    @apply flex max-h-[800px] w-full max-w-[580px] flex-col justify-center space-y-6 transition-all lg:h-full lg:space-y-8 !important;
+  }
+  .form-title {
+    @apply h1 text-center text-light-100 md:text-left !important;
+  }
+  .form-submit-button {
+    @apply primary-btn h-[66px] !important;
+  }
+  .error-message {
+    @apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
+  }
+
 .typing {
   overflow: hidden;
   display: inline-block;
