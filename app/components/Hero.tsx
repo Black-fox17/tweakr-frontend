@@ -49,7 +49,7 @@ const Hero = () => {
                     #eb8d29
                     #f2ca1c
                     #7654a1
-                    #c7316e
+                    #c7316e,
                     #38b6ff
                 </div>
             </div>
