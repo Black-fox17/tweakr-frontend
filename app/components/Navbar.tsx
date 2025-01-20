@@ -64,7 +64,7 @@ const Navbar = () => {
                     </div>
                     <div className='hidden md:flex items-center justify-center gap-4'>
                         <Button>
-                            <Link href="/signup">Get Started</Link>
+                            <Link href="/sign-up">Get Started</Link>
                         </Button>
                     </div>
                     <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-3 pb-[0.4rem] md:hidden cursor-pointer">

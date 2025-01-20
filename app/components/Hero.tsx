@@ -28,7 +28,7 @@ const Hero = () => {
     }, []);
     return (
         <section
-            className='relative flex items-center justify-center md:min-h-screen bg-[url("/assets/images/earth.svg")] bg-no-repeat bg-left-bottom'
+            className='relative flex items-center justify-center md:min-h-screen bg-[url("/assets/images/earth.svg")] bg-no-repeat bg-left-bottom mt-[4rem]'
         >
             <div className='section-padding'>
                 <div className='w-full bg-white bg-opacity-10 p-4 py-8 md:p-8 lg:p-10 my-10 rounded-[2rem] sm:rounded-[3rem]'>

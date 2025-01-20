@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -24,8 +23,7 @@ export default function RootLayout({
       <body
         className={`${lexend.variable} antialiased`}
       >
-        <Navbar />
-        <main className="w-full mt-[4rem]">
+        <main className="w-full">
           {children}
         </main>
       </body>
