@@ -63,7 +63,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className='hidden md:flex items-center justify-center gap-4'>
-                        <Button>
+                        <Button variant='outlined'>
                             <Link href="/sign-up">Get Started</Link>
                         </Button>
                     </div>

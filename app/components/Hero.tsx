@@ -33,23 +33,23 @@ const Hero = () => {
             <div className='section-padding'>
                 <div className='w-full bg-white bg-opacity-10 p-4 py-8 md:p-8 lg:p-10 my-10 rounded-[2rem] sm:rounded-[3rem]'>
                     <div className='max-w-[56rem] min-h-[180px] font-semibold '>
-                        <h1 className="text-[3.5rem] sm:text-[4rem] text-justify lg:text-[4.5rem] font-normal leading-[1] mb-7 typing"
+                        <h1 className="text-[3.5rem] sm:text-[4rem] justify- lg:text-[4.5rem] font-normal leading-[1] mb-7 typing"
                             style={{ animationDelay: '8s' }}>
                             You Write, <br />We Help You Reference!
                         </h1>
-                        <p className="text-darkgray text-base md:text-lg mb-8 leading-7 typing" style={{ animationDelay: '10s' }}>
+                        <p className="text-gray-600 text-base md:text-lg mb-8 leading-7 typing" style={{ animationDelay: '10s' }}>
                             We know citation and referencing is boring and too stressful. We exist to save you all that, so you can focus on what Matters most.
                             <br />
                             Made for students, researchers, and professionals! Tweakr ensures your work meets the highest academic standards. Powered by professionals and trusted citation databases, we simplify the referencing process—saving you time and effort.
                         </p>
                     </div>
-                    <Button>
+                    <Button variant='outlined'>
                         Get Started
                     </Button>
                     #eb8d29
                     #f2ca1c
                     #7654a1
-                    #c7316e,
+                    #c7316e
                     #38b6ff
                 </div>
             </div>

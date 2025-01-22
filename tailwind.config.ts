@@ -11,8 +11,8 @@ const config: Config = {
 		extend: {
 			colors: {
 				brand: {
-					'100': '#EA6365',
-					DEFAULT: '#FA7275'
+					'100': '#DA4381',
+					DEFAULT: '#c7316e'
 				},
 				red: '#FF7474',
 				error: '#b80000',
@@ -61,10 +61,20 @@ const config: Config = {
 					'20%,50%': {
 						opacity: '0'
 					}
-				}
+				},
+				slideIn: {
+					'0%': { transform: 'translateX(-100px)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' },
+				},
+				fadeInFromTop: {
+					'0%': { transform: 'translateY(-50px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' },
+				},
 			},
 			animation: {
-				'caret-blink': 'caret-blink 1.25s ease-out infinite'
+				'caret-blink': 'caret-blink 1.25s ease-out infinite',
+				slideIn: 'slideIn 1s ease-out',
+				fadeInFromTop: 'fadeInFromTop 1s ease-out',
 			}
 		}
 	},

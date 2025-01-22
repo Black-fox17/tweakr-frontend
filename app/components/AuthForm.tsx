@@ -74,13 +74,22 @@ const AuthForm = ({ type }: { type: FormType }) => {
                     <h1 className='form-title'>
                         {type === "sign-in" ? "Sign In" : "Sign Up"}
                     </h1>
+                    <button className=' relative flex items-center justify-center gap-3 border border-light-300 px-4 py-2 rounded-[1rem] shadow-md hover:bg-gray-100 transition-all duration-200'>
+                        <Image src="/assets/icons/google-icon.svg" alt="google" width={24} height={24} className="w-6 h-6 absolute left-4" />
+                        <span className='text-gray-500 font-normal'>Continue with Google</span>
+                    </button>
+                    <div className="flex items-center gap-4 w-full">
+                        <div className="flex-grow h-[1px] bg-gray-300"></div>
+                        <span className="text-md text-brand font-bold">or</span>
+                        <div className="flex-grow h-[1px] bg-gray-300"></div>
+                    </div>
                     {type === "sign-up" && (
                         <FormField
                             control={form.control}
                             name="fullName"
                             render={({ field }) => (
                                 <FormItem>
-                                    <div className='shad-form-itme'>
+                                    <div className='shad-form-item'>
                                         <FormLabel className='shad-form-label'>Full Name</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Enter your Fullname "
@@ -98,7 +107,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <div className='shad-form-itme'>
+                                <div className='shad-form-item'>
                                     <FormLabel className='shad-form-label'>Email</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Enter your Email "
