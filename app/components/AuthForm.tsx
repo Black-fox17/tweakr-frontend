@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 
 type FormType = "sign-in" | "sign-up"
@@ -34,6 +35,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
     const [errorMessage, setErrorMessage] = useState("")
     const [accountId, setAccountId] = useState(null)
 
+    const router = useRouter()
+
     const formSchema = authFormSchema(type)
 
     // 1. Define your form.
@@ -48,6 +51,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true)
         setErrorMessage("")
+        router.push("/dashboard")
 
         try {
             // const user =

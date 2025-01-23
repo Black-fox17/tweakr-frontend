@@ -43,7 +43,7 @@ const Hero = () => {
                             Made for students, researchers, and professionals! Tweakr ensures your work meets the highest academic standards. Powered by professionals and trusted citation databases, we simplify the referencing process—saving you time and effort.
                         </p>
                     </div>
-                    <Button variant='outlined'>
+                    <Button variant='outlined' overrideStyle='py-1 px-4'>
                         Get Started
                     </Button>
                     #eb8d29

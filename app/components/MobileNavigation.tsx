@@ -19,7 +19,7 @@ const MobileNavigation = () => {
                 aria-label="Open mobile navigation menu"
             >
                 <Image
-                    src="/assets/images/menu.svg"
+                    src="/assets/icons/harmburger.svg"
                     alt='forcythe logo'
                     width={18}
                     height={18}
