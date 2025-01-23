@@ -1,88 +1,126 @@
-// "use client"
+"use client"
 
-// import { zodResolver } from "@hookform/resolvers/zod"
-// import { useForm } from "react-hook-form"
-// import { z } from "zod"
-// // import { Form } from "@/components/ui/form"
-// import { SelectItem } from "@/components/ui/select"
-// // import { FormControl } from "@/components/ui/form"
-// import FileUploader from "./FileUploader"
-// import CustomFormField from "@/components/ui/customField"
-// import { PatientFormValidation } from "@/lib/validation";
-// import React, { useState } from 'react'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { SelectItem } from "@/components/ui/select"
+import FileUploader from "./FileUploader"
+import { Input } from "@/components/ui/input"
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import React, { useState } from 'react'
+import Button from "./Button"
 
 
-// export enum FormFieldType {
-//     INPUT = "input",
-//     TEXTAREA = "textarea",
-//     PHONE_INPUT = "phoneInput",
-//     CHECKBOX = "checkbox",
-//     DATE_PICKER = "datePicker",
-//     SELECT = "select",
-//     SKELETON = "skeleton"
-// }
+type FormType = "sign-in" | "sign-up"
 
-// const DraftForm = () => {
-//     const [isLoading, setIsLoading] = useState(false);
+const authFormSchema = (formType: FormType) => {
+    return z.object({
+        email: z.string().email(),
+        fullName: formType === "sign-up"
+            ? z.string().min(2).max(50)
+            : z.string().optional()
+    })
+}
 
-//     const user = {
-//         name: "John Doe",
-//         email: "",
-//         phone: "",
-//     }
+const DraftForm = ({ type }: { type: FormType }) => {
+    const [isLoading, setIsLoading] = useState(false);
 
-//     const form = useForm<z.infer<typeof PatientFormValidation>>({
-//         resolver: zodResolver(PatientFormValidation),
-//         defaultValues: {
-//             // ...PatientFormDefaultValues,
-//             name: user.name,
-//             email: user.email,
-//             phone: user.phone,
-//         },
-//     });
+    const formSchema = authFormSchema(type)
 
-//     return (
-//         <div className="space-y-6">
-//             <div className="mb-9 space-y-1">
-//                 <h3 className='text-lg sm:text-xl md:text-2xl font-normal mb-8'>
-//                     Upload, Edit, and Download Documents Effortlessly
-//                 </h3>
-//             </div>
 
-//             <CustomFormField
-//                 fieldType={FormFieldType.SELECT}
-//                 control={form.control}
-//                 name="identificationType"
-//                 label="Identification Type"
-//                 placeholder="Select identification type"
-//             >
-//                 {/* {IdentificationTypes.map((type, i) => (
-//                     <SelectItem key={type + i} value={type}>
-//                         {type}
-//                     </SelectItem>
-//                 ))} */}
-//             </CustomFormField>
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            fullName: "", email: ""
+        },
+    })
 
-//             <CustomFormField
-//                 fieldType={FormFieldType.INPUT}
-//                 control={form.control}
-//                 name="identificationNumber"
-//                 label="Identification Number"
-//                 placeholder="123456789"
-//             />
+    return (
+        <div className="space-y-6 my-12">
+            <div className="mb-9 space-y-1">
+                <h3 className='text-lg sm:text-xl md:text-2xl font-normal mb-8'>
+                    Upload, Edit, and Download Documents Effortlessly
+                </h3>
+            </div>
+            <Form {...form}
+            >
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <div className='flex flex-col gap-4'>
+                                <FormLabel className='input-label'>Email</FormLabel>
+                                <FormControl>
+                                    <Input placeholder=""
+                                        className='input-element'
+                                        {...field} />
+                                </FormControl>
+                            </div>
+                            <FormMessage className='' />
+                        </FormItem>
+                    )}
+                />
 
-//             <CustomFormField
-//                 fieldType={FormFieldType.SKELETON}
-//                 control={form.control}
-//                 name="identificationDocument"
-//                 label="Scanned Copy of Identification Document"
-//                 renderSkeleton={(field) => (
-//                     // <FormControl>
-//                     <FileUploader files={field.value} onChange={field.onChange} />
-//                 )}
-//             />
-//         </div>
-//     )
-// }
+                <FormField
+                    control={form.control}
+                    name="fullname"
+                    render={({ field }) => (
+                        <FormItem>
+                            <div className='flex flex-col gap-4'>
+                                <FormLabel className='input-label'>Upload Draft</FormLabel>
+                                <FormControl>
+                                    <FileUploader files={field.value} onChange={field.onChange} />
+                                </FormControl>
+                            </div>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="fullname"
+                    render={({ field }) => (
+                        <FormItem>
+                            <div className='flex flex-col gap-4'>
+                                <FormLabel className='input-label'>Upload Draft</FormLabel>
+                                <FormControl>
+                                </FormControl>
+                            </div>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="fullname"
+                    render={({ field }) => (
+                        <FormItem>
+                            <div className='flex flex-col gap-4'>
+                                <FormLabel className='input-label'>Upload Draft</FormLabel>
+                                <FormControl>
+                                </FormControl>
+                            </div>
+                        </FormItem>
+                    )}
+                />
+                <div className="inline w-fit">
+                    <Button
+                        overrideStyle="w-full py-2 px-8  "
+                        variant="outlined"
+                    >
+                        Upload File
+                    </Button>
+                </div>
 
-// export default DraftForm
+            </Form>
+        </div>
+    )
+}
+
+export default DraftForm

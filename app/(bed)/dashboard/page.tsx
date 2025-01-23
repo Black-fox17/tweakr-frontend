@@ -1,4 +1,4 @@
-// import DraftForm from '@/app/components/DraftForm'
+import DraftForm from '@/app/components/DraftForm'
 import React from 'react'
 
 const page = () => {
@@ -8,7 +8,7 @@ const page = () => {
                 Secure Your Work and Experience a Personalized Platform!<br />
                 Manage Drafts, References, and Preferences with Ease.
             </h1>
-            {/* <DraftForm /> */}
+            <DraftForm />
         </div>
     )
 }

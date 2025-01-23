@@ -63,7 +63,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex flex-col lg:items-center justify-center lg:w-auto border-t border-gray-200 lg:border-none w-screen gap-4 mt-auto mb-8 px-4 lg:flex-row lg:mt-0 lg:mb-0 lg:px-0 whitespace-nowrap lg:p-0 p-4">
-                        <Link href="/" className='hidden md:block'>
+                        <Link href="/plans" className='hidden md:block'>
                             Plan
                         </Link>
                         <div

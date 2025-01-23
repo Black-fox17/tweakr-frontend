@@ -10,6 +10,8 @@ type FileUploaderProps = {
     onChange: (files: File[]) => void
 }
 
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
+
 const FileUploader = ({ files, onChange }: FileUploaderProps) => {
     const onDrop = useCallback((acceptedFiles: File[]) => {
         // Do something with the files
@@ -22,7 +24,7 @@ const FileUploader = ({ files, onChange }: FileUploaderProps) => {
             <input {...getInputProps()} />
             {files && files?.length > 0 ? (
                 <Image
-                    src={"convertFileToUrl(files[0])"}
+                    src={convertFileToUrl(files[0])}
                     width={1000}
                     height={1000}
                     alt='uploaded image'
@@ -32,15 +34,16 @@ const FileUploader = ({ files, onChange }: FileUploaderProps) => {
                 <>
                     <Image
                         src="/assets/icons/upload.svg"
-                        width={40}
-                        height={40}
+                        width={60}
+                        height={60}
                         alt='upload'
+                        className='bg-brand rounded-full p-3'
                     />
                     <div className='file-upload_label'>
                         <p className='text-14-regular'>
                             <span className='text-green-500'>click to upload</span> or drag and drop
                         </p>
-                        <p>SVG,PNG,GPEP or Gif (max 800x400)</p>
+                        <p>Docx,pdf,..</p>
                     </div>
                 </>
             )}

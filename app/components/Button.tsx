@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'default', overrideStyle, chi
     const variantClasses = variant === 'outlined' ? ' bg-brand' : 'bg-[#064386] text-white';
 
     return (
-        <div className='relative w-fit group'>
+        <div className='relative group'>
             <button className={`${overrideStyle} ${baseClasses} ${variantClasses}`}>
                 {children}
             </button>
