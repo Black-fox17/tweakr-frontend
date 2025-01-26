@@ -33,7 +33,7 @@ body {
     }
     
   .section-padding {
-    @apply px-5 md:px-10 lg:px-14 xl:px-28;
+    @apply px-2 md:px-10 lg:px-14 xl:px-28;
   }
    .section-padding-wide {
     @apply px-[11rem];
@@ -79,7 +79,7 @@ body {
 }
 
   .h1 {
-    @apply text-[34px] leading-[42px] font-bold;
+    @apply text-[24px] leading-[42px] font-bold;
   }
 
  .body-2 {

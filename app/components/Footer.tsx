@@ -8,22 +8,22 @@ const Footer = () => {
             {/* Logo/Image */}
             <div className="flex items-center justify-center">
                 <Image
-                    src={"/Footerlogo"}
+                    src={"/assets/images/Tweakr.png"}
                     alt="Flag Icon"
-                    height={50}
-                    width={50}
-                    className="rounded-full"
+                    height={100}
+                    width={100}
+                    className="w-30 h-auto"
                 />
             </div>
 
             {/* Title */}
             <h1 className="text-center text-[24px] md:text-[40.5px] font-bold leading-snug">
-                Empowering <br className="hidden md:block" /> Companies to Craft <br className="hidden md:block" /> Helpful Guides
+                You Write<br className="hidden md:block" />We Help You <br className="hidden md:block" /> Reference
             </h1>
 
             {/* CTA Button */}
             <button className='flex items-center justify-center gap-2'>
-                Try it for free
+                Try it now
                 <Image
                     src={"/assets/images/arrowright.svg"}
                     alt="Twitter Icon"
@@ -35,16 +35,18 @@ const Footer = () => {
             {/* Social Media Links */}
             <div className="flex items-center justify-center gap-4">
                 <Image
-                    src={"/assets/images/linkedin.svg"}
+                    src={"/assets/images/twitter.svg"}
                     alt="Twitter Icon"
                     height={18}
                     width={18}
+                    className='w-8'
                 />
                 <Image
-                    src={"/assets/images/twitter.svg"}
+                    src={"/assets/images/x.svg"}
                     alt="LinkedIn Icon"
                     height={18}
                     width={18}
+                    className='bg-white rounded-full p-1 w-10'
                 />
             </div>
 

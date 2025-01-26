@@ -23,9 +23,8 @@ type FormType = "sign-in" | "sign-up"
 const authFormSchema = (formType: FormType) => {
     return z.object({
         email: z.string().email(),
-        fullName: formType === "sign-up"
-            ? z.string().min(2).max(50)
-            : z.string().optional()
+        password: formType === "sign-up" ? z.string().min(8).max(20) : z.string(),
+        confirmPassword: formType === "sign-up" ? z.string().min(8).max(20) : z.string(),
     })
 }
 
@@ -42,7 +41,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullName: "", email: ""
+            email: "",
+            password: "",
+            confirmPassword: "",
         },
     })
 
@@ -86,25 +87,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
                         <span className="text-md text-brand font-bold">or</span>
                         <div className="flex-grow h-[1px] bg-gray-300"></div>
                     </div>
-                    {type === "sign-up" && (
-                        <FormField
-                            control={form.control}
-                            name="fullName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <div className='shad-form-item'>
-                                        <FormLabel className='shad-form-label'>Full Name</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Enter your Fullname "
-                                                className='shad-input'
-                                                {...field} />
-                                        </FormControl>
-                                    </div>
-                                    <FormMessage className='shad-form-message' />
-                                </FormItem>
-                            )}
-                        />
-                    )}
                     <FormField
                         control={form.control}
                         name="email"
@@ -122,6 +104,42 @@ const AuthForm = ({ type }: { type: FormType }) => {
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem>
+                                <div className='shad-form-item'>
+                                    <FormLabel className='shad-form-label'>Password</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder=" Enter your Password"
+                                            className='shad-input'
+                                            {...field} />
+                                    </FormControl>
+                                </div>
+                                <FormMessage className='shad-form-message' />
+                            </FormItem>
+                        )}
+                    />
+                    {type === "sign-up" && (
+                        <FormField
+                            control={form.control}
+                            name="confirmPassword"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <div className='shad-form-item'>
+                                        <FormLabel className='shad-form-label'>Confirm Password</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder=" Enter your Password"
+                                                className='shad-input'
+                                                {...field} />
+                                        </FormControl>
+                                    </div>
+                                    <FormMessage className='shad-form-message' />
+                                </FormItem>
+                            )}
+                        />
+                    )}
                     <Button type="submit" className='form-submit-button' disabled={isLoading}>
                         {type === "sign-in" ? "Sign In" : "Sign Up"}
 

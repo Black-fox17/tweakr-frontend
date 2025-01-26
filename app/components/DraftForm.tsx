@@ -18,27 +18,30 @@ import React, { useState } from 'react'
 import Button from "./Button"
 
 
-type FormType = "sign-in" | "sign-up"
+type FormType = "draft"
 
-const authFormSchema = (formType: FormType) => {
+const authFormSchema = () => {
     return z.object({
-        email: z.string().email(),
-        fullName: formType === "sign-up"
-            ? z.string().min(2).max(50)
-            : z.string().optional()
+        title: z.string(),
+        author: z.string().min(2).max(50),
+        year: z.string(),
+        files: z.array(z.instanceof(File)),
     })
 }
 
-const DraftForm = ({ type }: { type: FormType }) => {
+const DraftForm = () => {
     const [isLoading, setIsLoading] = useState(false);
 
-    const formSchema = authFormSchema(type)
+    const formSchema = authFormSchema()
 
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullName: "", email: ""
+            files: [] as File[],
+            title: "",
+            author: "",
+            year: "",
         },
     })
 
@@ -53,25 +56,42 @@ const DraftForm = ({ type }: { type: FormType }) => {
             >
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="title"
                     render={({ field }) => (
                         <FormItem>
                             <div className='flex flex-col gap-4'>
-                                <FormLabel className='input-label'>Email</FormLabel>
+                                <FormLabel className='input-label'>Title</FormLabel>
                                 <FormControl>
-                                    <Input placeholder=""
+                                    <Input placeholder="Enter the Title"
                                         className='input-element'
                                         {...field} />
                                 </FormControl>
                             </div>
-                            <FormMessage className='' />
+                            <FormMessage className='shad-form-message ' />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="author"
+                    render={({ field }) => (
+                        <FormItem>
+                            <div className='flex flex-col gap-4'>
+                                <FormLabel className='input-label'>Author Name</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Enter the Author Name"
+                                        className='input-element'
+                                        {...field} />
+                                </FormControl>
+                            </div>
+                            <FormMessage className='shad-form-message ' />
                         </FormItem>
                     )}
                 />
 
                 <FormField
                     control={form.control}
-                    name="fullname"
+                    name="files"
                     render={({ field }) => (
                         <FormItem>
                             <div className='flex flex-col gap-4'>
@@ -80,32 +100,24 @@ const DraftForm = ({ type }: { type: FormType }) => {
                                     <FileUploader files={field.value} onChange={field.onChange} />
                                 </FormControl>
                             </div>
+                            <FormMessage className='shad-form-message ' />
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
-                    name="fullname"
+                    name="year"
                     render={({ field }) => (
                         <FormItem>
-                            <div className='flex flex-col gap-4'>
-                                <FormLabel className='input-label'>Upload Draft</FormLabel>
+                            <div className='flex flex-col gap-4 mb-8'>
+                                <FormLabel className='input-label'>Paper Year</FormLabel>
                                 <FormControl>
+                                    <Input placeholder="Enter the Title"
+                                        className='input-element'
+                                        {...field} />
                                 </FormControl>
                             </div>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="fullname"
-                    render={({ field }) => (
-                        <FormItem>
-                            <div className='flex flex-col gap-4'>
-                                <FormLabel className='input-label'>Upload Draft</FormLabel>
-                                <FormControl>
-                                </FormControl>
-                            </div>
+                            <FormMessage className='shad-form-message ' />
                         </FormItem>
                     )}
                 />

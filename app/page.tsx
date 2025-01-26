@@ -3,6 +3,7 @@ import HowItWorks from "./components/HowItWorks";
 import About from "./components/About";
 import Vision from "./components/Vision";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
 
@@ -14,6 +15,7 @@ export default function Home() {
       <About />
       <Vision />
       <HowItWorks />
+      <Footer />
     </div>
   );
 }
