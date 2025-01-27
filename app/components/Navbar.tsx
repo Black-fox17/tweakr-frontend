@@ -33,7 +33,7 @@ const Navbar = () => {
         };
     }, []);
     return (
-        <nav className={`section-padding text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm py-[0.5rem] ${scrolled ? 'shadow-xl' : ''}`}>
+        <nav className={`section-padding text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
             <div className='flex justify-between items-center w-full'>
                 <div className='flex items-center justify-between gap-20'>
                     <Link href='/'>
@@ -61,7 +61,7 @@ const Navbar = () => {
                             </ul>
                         </div> */}
                 </div>
-                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4  mb-8 lg:flex-row whitespace-nowrap ">
+                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
                     <Link href="/plans" className='hidden md:block'>
                         Plan
                     </Link>

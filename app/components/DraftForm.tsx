@@ -16,10 +16,7 @@ import {
 } from "@/components/ui/form"
 import React, { useState } from 'react'
 import Button from "./Button"
-import PaymentModal from "./PaymentModal"
 
-
-type FormType = "draft"
 
 const authFormSchema = () => {
     return z.object({
@@ -138,7 +135,7 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
                         variant="outlined"
                     >
                         {isLoading ?
-                            <div>
+                            <div className="flex gap-2">
                                 <span className="animate-spin">
                                     <Image
                                         src="/assets/icons/loader.svg"

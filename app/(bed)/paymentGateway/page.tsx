@@ -54,8 +54,8 @@ const page = ({ onSuccess }: { onSuccess: () => void }) => {
     };
 
     return (
-        <div className='mt-12 flex flex-col sm:flex-row gap-4'>
-            <div>
+        <div className='mt-12 mt-6 flex flex-col sm:flex-row gap-4 section-padding'>
+            <div className="flex-1 border border-light-300 p-4 shadow-xl">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
                         <FormField
@@ -129,7 +129,10 @@ const page = ({ onSuccess }: { onSuccess: () => void }) => {
                     </form>
                 </Form>
             </div>
-            <div>hhhhhh</div>
+            <div
+                className="flex-1">
+                hhhhhh
+            </div>
         </div>
     )
 }
