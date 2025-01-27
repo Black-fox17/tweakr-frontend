@@ -1,5 +1,5 @@
 "use client"
-
+import Image from "next/image"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -137,7 +137,18 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
                         overrideStyle="w-full py-2 px-8  "
                         variant="outlined"
                     >
-                        {isLoading ? "Uploading..." : "Upload File Info"}
+                        {isLoading ?
+                            <div>
+                                <span className="animate-spin">
+                                    <Image
+                                        src="/assets/icons/loader.svg"
+                                        alt="loader"
+                                        width={24}
+                                        height={24} />
+                                </span>
+                                <span>Uploading...</span>
+                            </div>
+                            : "Upload File Info"}
                     </Button>
                 </form>
             </Form>

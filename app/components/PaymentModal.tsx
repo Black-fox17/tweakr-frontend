@@ -51,7 +51,7 @@ const PaymentModal = ({ onClose }: { onClose: () => void }) => {
                         className="text-white bg-brand rounded-[5px]"
                         onClick={() => {
                             setOpen(false);
-                            router.push("/payment")
+                            router.push("/paymentGateway")
                             alert("Proceeding to payment...");
                         }}
                     >
