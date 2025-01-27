@@ -15,27 +15,7 @@ const allowedExtensions = [
     "pdf",
     "doc",
     "docx",
-    "txt",
-    "xls",
-    "xlsx",
-    "csv",
-    "rtf",
-    "ods",
-    "ppt",
-    "odp",
-    "md",
-    "html",
-    "htm",
-    "epub",
-    "pages",
-    "fig",
-    "psd",
-    "ai",
-    "indd",
-    "xd",
-    "sketch",
-    "afdesign",
-    "afphoto",
+    "txt"
 ];
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
@@ -57,7 +37,6 @@ const FileUploader = ({ files, onChange }: FileUploaderProps) => {
             );
             return;
         }
-
         setError(null); // Clear any previous errors
         onChange(acceptedFiles);
     },

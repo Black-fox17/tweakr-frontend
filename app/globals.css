@@ -99,7 +99,7 @@ body {
   }
 
    .input-label {
-    @apply text-[20px] text-left text-gray-700 !important;
+    @apply text-[1rem] text-left text-gray-700 !important;
   }
 
   .input-element {
