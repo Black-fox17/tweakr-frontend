@@ -73,7 +73,7 @@ const FileUploader = ({ files, onChange }: FileUploaderProps) => {
                     src={convertFileToUrl(files[0])}
                     width={300}
                     height={200}
-                    alt='uploaded image'
+                    alt='uploaded a file'
                     className='h-auto overflow-hidden object-cover'
                 />
             ) : (
