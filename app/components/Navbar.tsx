@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import { usePathname } from 'next/navigation'
-import MobileNavigation from './MobileNavigation'
+// import MobileNavigation from './MobileNavigation'
 
 // export const navElements = [
 //     { name: 'About', link: '/about' },
@@ -61,7 +61,7 @@ const Navbar = () => {
                             </ul>
                         </div> */}
                 </div>
-                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
+                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4  mb-8 lg:flex-row whitespace-nowrap ">
                     <Link href="/plans" className='hidden md:block'>
                         Plan
                     </Link>
