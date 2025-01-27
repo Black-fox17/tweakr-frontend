@@ -27,7 +27,7 @@ const authFormSchema = () => {
     });
 };
 
-const page = ({ onSuccess }: { onSuccess: () => void }) => {
+const page = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -49,7 +49,7 @@ const page = ({ onSuccess }: { onSuccess: () => void }) => {
         // Simulate form submission or API call
         setTimeout(() => {
             setIsLoading(false);
-            onSuccess(); // Trigger the PaymentModal on successful submission
+            // onSuccess(); // Trigger the PaymentModal on successful submission
         }, 1000);
     };
 
