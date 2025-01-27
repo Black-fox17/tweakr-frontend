@@ -8,7 +8,7 @@ const page = () => {
                 <div className="px-[1rem] sm:px-[50px] py-[65px]">
                     <h1 className="text-[36px] mb-[8px] text-[#0e2332] font-semibold leading-10">
                         Join Pro
-                        <br />Get Full Access to <span className='text-brand'>tweakR</span>
+                        <br />Get Full Access to <span className='text-brand'>TweakR</span>
                     </h1>
                     <span className="text-[18px] text-[#6e7b84]">
                         Cancel anytime.
@@ -57,10 +57,10 @@ const page = () => {
                             <div className='flex flex-col gap-4'>
                                 <h3 className='mb-[1rem] text-[16px] text-left'>Yearly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>4.50</span></p>
-                                    <div className='bg-[#75d16d] px-2 text-white text-[10px] rounded-full relative top-[-5]'>Save 36%</div>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>19.3</span></p>
+                                    <div className='bg-[#75d16d] px-2 text-white text-[10px] rounded-full relative top-[-5]'>Save 9%</div>
                                 </div>
-                                <i>Per month, billed each year ($54)</i>
+                                <i>Per month, billed each year ($220)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem] w-full"
@@ -75,9 +75,9 @@ const page = () => {
                             <div className='flex flex-col gap-4'>
                                 <h3 className='mb-[1rem] text-[16px] text-left'>Monthly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>7.00</span></p>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>20.00</span></p>
                                 </div>
-                                <i>Per month, billed each month ($7)</i>
+                                <i>Per month, billed each month ($20)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem]"

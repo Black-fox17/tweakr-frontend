@@ -17,10 +17,11 @@ const page = () => {
     };
     return (
         <div className='flex flex-col items-center justify-center mt-16 px-4 text-center'>
-            <h1 className='text-2xl sm:text-2xl md:text-3xl font-semibold mb-2 leading-tight'>
-                Secure Your Work and Experience a Personalized Platform!<br />
-                Manage Drafts, References, and Preferences with Ease.
+            <h1 className='text-2xl sm:text-2xl md:text-3xl font-semibold leading-tight'>
+                Secure Your Work and Experience a Personalized Platform!
             </h1>
+            <h3 className='text-[1rem] sm:text-xl md:text-2xl mt-2 font-semibold leading-tight'>                Manage Drafts, References, and Preferences with Ease.
+            </h3>
             <DraftForm onSuccess={handleFormSuccess} />
             {isPaymentModalOpen && <PaymentModal onClose={closeModal} />}
         </div>

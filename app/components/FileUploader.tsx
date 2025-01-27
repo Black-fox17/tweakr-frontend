@@ -68,7 +68,7 @@ const FileUploader = ({ files, onChange }: FileUploaderProps) => {
                         <p className='text-14-regular'>
                             <span className='text-green-500'>click to upload</span> or drag and drop
                         </p>
-                        <p>Allowed types: PDF, DOCX, TXT, ...</p>
+                        <p>Allowed types: PDF, DOCX, TXT, DOC</p>
                     </div>
                 </>
             )}

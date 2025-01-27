@@ -18,7 +18,7 @@ const Footer = () => {
 
             {/* Title */}
             <h1 className="text-center text-[24px] md:text-[40.5px] font-bold leading-snug">
-                You Write<br className="hidden md:block" />We Help You <br className="hidden md:block" /> Reference
+                You Write,<br />We Help You <br /> Reference
             </h1>
 
             {/* CTA Button */}
