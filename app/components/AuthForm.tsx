@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 
+
 type FormType = "sign-in" | "sign-up"
 
 const authFormSchema = (formType: FormType) => {
@@ -31,7 +32,6 @@ const authFormSchema = (formType: FormType) => {
 const AuthForm = ({ type }: { type: FormType }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
-    const [accountId, setAccountId] = useState(null)
 
     const router = useRouter()
 

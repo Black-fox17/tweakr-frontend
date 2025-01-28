@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form"
 import React, { useState } from 'react'
 import Button from "@/app/components/Button"
+import { useGlobalContext } from '@/context/GlobalContext'
 
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 
@@ -34,23 +35,23 @@ const authFormSchema = z.object({
 });
 
 const page = () => {
-
+    const { subscriptionType, amount } = useGlobalContext()
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [paymentMethod, setPaymentMethod] = useState<"card" | "bank">("card");
+    const [paymentMethod, setPaymentMethod] = useState<"card" | "mobilemoney">("card");
+
     const userDetails = {
         name: 'Kelvin Joe Young',
-        email: 'user@gmail.com',
+        email: 'zakariyyahshamsudeen@gmail.com',
         phone_number: '07000001100', // Change phonenumber to phone_number
         address: '123 Street Name, City, Country',
-        amount: 1000,
     };
 
     const flutterwaveConfig = {
-        public_key: "FLWPUBK-XXXXXXXXXXXXXXXXXXXXXX-X", // Replace with your Flutterwave public key
+        public_key: "FLWPUBK_TEST-7d6d6a7753da24b521bd1fd56b9b3ed0-X",
         tx_ref: Date.now().toString(),
-        amount: userDetails.amount / 100, // Convert cents to dollars
+        amount: 1000,
         currency: "USD",
-        payment_options: paymentMethod === "card" ? "card" : "banktransfer",
+        payment_options: 'card,mobilemoney,ussd',
         customer: {
             email: userDetails.email,
             phone_number: userDetails.phone_number, // Fixed name here
@@ -59,7 +60,7 @@ const page = () => {
         customizations: {
             title: "Subscription Payment",
             description: "Payment for yearly subscription",
-            logo: "/assets/images/Tweakr1.png",
+            logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
         },
     };
 
@@ -148,8 +149,8 @@ const page = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => setPaymentMethod("bank")}
-                                    className={`flex items-center justify-center py-2 px-4 w-full rounded-[5px] ${paymentMethod === "bank" ? "bg-brand text-white" : "bg-light-400"
+                                    onClick={() => setPaymentMethod("mobilemoney")}
+                                    className={`flex items-center justify-center py-2 px-4 w-full rounded-[5px] ${paymentMethod === "mobilemoney" ? "bg-brand text-white" : "bg-light-400"
                                         }`}
                                 >
                                     Pay with Bank Transfer
@@ -299,7 +300,7 @@ const page = () => {
                                     </Button>
                                 </>
                             )}
-                            {paymentMethod === "bank" && (
+                            {paymentMethod === "mobilemoney" && (
                                 <FlutterWaveButton {...flutterwaveButtonProps}>
                                     <Button
                                         overrideStyle="w-full py-4 px-8"
@@ -319,18 +320,18 @@ const page = () => {
                 <h1 className="text-2xl">Order Summary</h1>
                 <div className="h-[1px] w-full bg-light-200"></div>
                 <div className="flex item-center justify-between text-light-100 w-full">
-                    <p>Yearly Subscription</p>
-                    <p><strong>$54.00</strong> / year</p>
+                    <p>{subscriptionType} Subscription</p>
+                    <p><strong>${amount}</strong> / {subscriptionType}</p>
                 </div>
                 <div className="h-[1px] w-full bg-light-200"></div>
                 <div className="flex flex-col gap-4 text-light-100 w-full">
                     <h3>auto renewal</h3>
-                    <p>We will bill you yearly until you cancel.</p>
+                    <p>We will bill you {subscriptionType} until you cancel.</p>
                 </div>
                 <div className="h-[1px] w-full bg-light-200"></div>
                 <div className="flex item-center justify-between text-light-100 w-full">
                     <p>Subtotal</p>
-                    <p><strong>$54.00</strong></p>
+                    <p><strong>${amount}</strong></p>
                 </div>
                 <div className="flex item-center justify-between text-light-100 w-full">
                     <p>Tax</p>
@@ -338,7 +339,7 @@ const page = () => {
                 </div>
                 <div className="flex item-center justify-between text-light-100 w-full">
                     <p>Amount Due Today</p>
-                    <p><strong>$54.00</strong></p>
+                    <p><strong>${amount}</strong></p>
                 </div>
                 <div className="h-[1px] w-full bg-light-200"></div>
 
