@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="30" viewBox="0 0 46 30" fill="none" role="img">
+<path d="M0 4C0 1.79086 1.79086 0 4 0H42C44.2091 0 46 1.79086 46 4V26C46 28.2091 44.2091 30 42 30H4C1.79086 30 0 28.2091 0 26V4Z" fill="url(#paint0_linear_13_203)"></path>
+<rect opacity="0.3" y="4" width="46" height="5" fill="black"></rect>
+<rect x="4" y="15" width="20" height="7" fill="white"></rect>
+<path d="M26 15H25V16V22V23H26H40H41V22V16V15H40H26Z" fill="white" stroke="#FF5858" stroke-width="2"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30 19C30 19.5523 29.5523 20 29 20C28.4477 20 28 19.5523 28 19C28 18.4477 28.4477 18 29 18C29.5523 18 30 18.4477 30 19ZM34 19C34 19.5523 33.5523 20 33 20C32.4477 20 32 19.5523 32 19C32 18.4477 32.4477 18 33 18C33.5523 18 34 18.4477 34 19ZM37 20C37.5523 20 38 19.5523 38 19C38 18.4477 37.5523 18 37 18C36.4477 18 36 18.4477 36 19C36 19.5523 36.4477 20 37 20Z" fill="#0E2332"></path>
+<defs>
+<linearGradient id="paint0_linear_13_203" x1="0" y1="0" x2="47.4283" y2="27.5402" gradientUnits="userSpaceOnUse">
+<stop stop-color="#E6E9EA"></stop>
+<stop offset="1" stop-color="#C5D1D5"></stop>
+</linearGradient>
+</defs>
+</svg>

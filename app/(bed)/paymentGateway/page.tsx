@@ -3,7 +3,6 @@ import Image from "next/image"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { SelectItem } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import {
     Form,
@@ -15,6 +14,9 @@ import {
 } from "@/components/ui/form"
 import React, { useState } from 'react'
 import Button from "@/app/components/Button"
+
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
+
 
 const authFormSchema = z.object({
     country: z.string().min(1, "Country is required"),
@@ -33,9 +35,49 @@ const authFormSchema = z.object({
 
 const page = () => {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [paymentMethod, setPaymentMethod] = useState<"card" | "bank">("card");
+    const userDetails = {
+        name: 'Kelvin Joe Young',
+        email: 'user@gmail.com',
+        phone_number: '07000001100', // Change phonenumber to phone_number
+        address: '123 Street Name, City, Country',
+        amount: 1000,
+    };
 
+    const flutterwaveConfig = {
+        public_key: "FLWPUBK-XXXXXXXXXXXXXXXXXXXXXX-X", // Replace with your Flutterwave public key
+        tx_ref: Date.now().toString(),
+        amount: userDetails.amount / 100, // Convert cents to dollars
+        currency: "USD",
+        payment_options: paymentMethod === "card" ? "card" : "banktransfer",
+        customer: {
+            email: userDetails.email,
+            phone_number: userDetails.phone_number, // Fixed name here
+            name: userDetails.name,
+        },
+        customizations: {
+            title: "Subscription Payment",
+            description: "Payment for yearly subscription",
+            logo: "/assets/images/Tweakr1.png",
+        },
+    };
 
+    const handleFlutterwaveSuccess = (response: any) => {
+        console.log("Payment successful:", response);
+        closePaymentModal(); // Close the modal programmatically
+        alert("Payment Successful!");
+    };
+
+    const handleFlutterwaveError = () => {
+        alert("Payment failed! Please try again.");
+    };
+
+    const flutterwaveButtonProps = {
+        ...flutterwaveConfig,
+        callback: handleFlutterwaveSuccess,
+        onClose: handleFlutterwaveError,
+    };
 
     const form = useForm<z.infer<typeof authFormSchema>>({
         resolver: zodResolver(authFormSchema),
@@ -47,17 +89,20 @@ const page = () => {
             securityCode: "",
             postalCode: "",
         },
-    })
+    });
 
     const onSubmit = async (data: z.infer<typeof authFormSchema>) => {
         setIsLoading(true);
+        console.log("Card Payment Form Submitted: ", data);
+
         // Simulate form submission or API call
-        console.log("Form submitted: ", data);
         setTimeout(() => {
             setIsLoading(false);
-            // onSuccess(); // Trigger the PaymentModal on successful submission
+            alert("Payment Successful!");
         }, 1000);
     };
+
+
 
     return (
         <div className='my-12  flex flex-col items-stretch justify-center md:flex-row gap-8 section-padding'>
@@ -92,125 +137,179 @@ const page = () => {
                         </div>
                         <div className="flex flex-col gap-4">
                             <h2 className="text-4 text-brand">Enter Billing Info</h2>
-                            <div className="flex gap-4 w-full">
-                                <button>
-                                    paypal
+                            <div className="flex gap-4 w-full flex-col md:flex-row">
+                                <button
+                                    type="button"
+                                    onClick={() => setPaymentMethod("card")}
+                                    className={`flex items-center justify-center py-2 px-4 w-full rounded-[5px] ${paymentMethod === "card" ? "bg-brand text-white" : "bg-light-400"
+                                        }`}
+                                >
+                                    Pay with Card
                                 </button>
-                                <button>
-                                    google pay
+                                <button
+                                    type="button"
+                                    onClick={() => setPaymentMethod("bank")}
+                                    className={`flex items-center justify-center py-2 px-4 w-full rounded-[5px] ${paymentMethod === "bank" ? "bg-brand text-white" : "bg-light-400"
+                                        }`}
+                                >
+                                    Pay with Bank Transfer
                                 </button>
                             </div>
-                            <div className="flex items-center justify-center gap-4 text-light-200 w-full">
-                                <div className="h-[1px] w-full bg-light-200"></div>
-                                <p className="whitespace-nowrap">or pay with credit card</p>
-                                <div className="h-[1px] w-full bg-light-200"></div>
-                            </div>
-                            <FormField
-                                control={form.control}
-                                name="cardName"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <div className='flex flex-col gap-4'>
-                                            <FormLabel className='input-label'>Name on Card</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter your Card Name"
-                                                    className='input-element'
-                                                    {...field} />
-                                            </FormControl>
-                                        </div>
-                                        <FormMessage className='shad-form-message ' />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="cardNumber"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <div className='flex flex-col gap-4'>
-                                            <FormLabel className='input-label'>Card Number</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter the Card Number"
-                                                    className='input-element'
-                                                    {...field} />
-                                            </FormControl>
-                                        </div>
-                                        <FormMessage className='shad-form-message ' />
-                                    </FormItem>
-                                )}
-                            />
-                            <div className="flex flex-wrap align-center justify-between w-full gap-4 mb-8">
-                                <FormField
-                                    control={form.control}
-                                    name="expirationDate"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <div className='flex flex-col gap-4'>
-                                                <FormLabel className='input-label'>Expiration</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Enter card Expiration Date"
-                                                        className='input-element'
-                                                        {...field} />
-                                                </FormControl>
-                                            </div>
-                                            <FormMessage className='shad-form-message ' />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="securityCode"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <div className='flex flex-col gap-4'>
-                                                <FormLabel className='input-label'>Security Code</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Enter card Security Code"
-                                                        className='input-element'
-                                                        {...field} />
-                                                </FormControl>
-                                            </div>
-                                            <FormMessage className='shad-form-message ' />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="postalCode"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <div className='flex flex-col gap-4'>
-                                                <FormLabel className='input-label'>Billing Zip/Postal Code
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Enter the Billing Zip"
-                                                        className='input-element'
-                                                        {...field} />
-                                                </FormControl>
-                                            </div>
-                                            <FormMessage className='shad-form-message ' />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
+                            {paymentMethod === "card" && (
+                                <>
+                                    <div className="flex items-center justify-center gap-4 text-light-200 w-full">
+                                        <div className="h-[1px] w-full bg-light-200"></div>
+                                        <p className="whitespace-nowrap">or pay with credit card</p>
+                                        <div className="h-[1px] w-full bg-light-200"></div>
+                                    </div>
+                                    <FormField
+                                        control={form.control}
+                                        name="cardName"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <div className='flex flex-col gap-4'>
+                                                    <FormLabel className='input-label'>Name on Card</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder="Enter your Card Name"
+                                                            className='input-element'
+                                                            {...field} />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage className='shad-form-message ' />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="cardNumber"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <div className='flex flex-col gap-4 relative'>
+                                                    <FormLabel className='input-label'>Card Number</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder="Enter the Card Number"
+                                                            className='input-element'
+                                                            {...field} />
+                                                    </FormControl>
+                                                    <div className="flex gap-1 items-center justify-center absolute top-10 right-1">
+                                                        <Image
+                                                            src="/assets/images/creditCard1.svg"
+                                                            alt="visa"
+                                                            width={37}
+                                                            height={37} />
+                                                        <Image
+                                                            src="/assets/images/creditCard2.svg"
+                                                            alt="mastercard"
+                                                            width={37}
+                                                            height={37} />
+                                                        <Image
+                                                            src="/assets/images/creditCard3.svg"
+                                                            alt="amex"
+                                                            width={37}
+                                                            height={37} />
+                                                        <Image
+                                                            src="/assets/images/creditCard4.svg"
+                                                            alt="amex"
+                                                            width={37}
+                                                            height={37} />
+                                                    </div>
+                                                </div>
+                                                <FormMessage className='shad-form-message ' />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <div className="flex flex-wrap align-center justify-between w-full gap-4 mb-8">
+                                        <FormField
+                                            control={form.control}
+                                            name="expirationDate"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <div className='flex flex-col gap-4'>
+                                                        <FormLabel className='input-label'>Expiration</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder="MM/YY"
+                                                                className='input-element'
+                                                                {...field} />
+                                                        </FormControl>
+                                                    </div>
+                                                    <FormMessage className='shad-form-message ' />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="securityCode"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <div className='flex flex-col gap-4 relative'>
+                                                        <FormLabel className='input-label'>Security Code</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder="CVC"
+                                                                className='input-element'
+                                                                {...field} />
+                                                        </FormControl>
+                                                        <div className="flex absolute top-10 right-1">
+                                                            <Image
+                                                                src="/assets/images/creditCard5.svg"
+                                                                alt="amex"
+                                                                width={40}
+                                                                height={40} />                                                </div>
+                                                    </div>
+                                                    <FormMessage className='shad-form-message ' />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="postalCode"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <div className='flex flex-col gap-4'>
+                                                        <FormLabel className='input-label'>Billing Zip/Postal Code
+                                                        </FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder="Zip/Postal Code"
+                                                                className='input-element'
+                                                                {...field} />
+                                                        </FormControl>
+                                                    </div>
+                                                    <FormMessage className='shad-form-message ' />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                    <Button
+                                        overrideStyle="w-full py-4 px-8  "
+                                        variant="outlined"
+                                    >
+                                        {isLoading ?
+                                            <div className="flex gap-2 items-center justify-center" >
+                                                <span className="animate-spin">
+                                                    <Image
+                                                        src="/assets/icons/loader.svg"
+                                                        alt="loader"
+                                                        width={24}
+                                                        height={24} />
+                                                </span>
+                                                <span>Processing...</span>
+                                            </div> : "Complete Checkout"}
+                                    </Button>
+                                </>
+                            )}
+                            {paymentMethod === "bank" && (
+                                <FlutterWaveButton {...flutterwaveButtonProps}>
+                                    <Button
+                                        overrideStyle="w-full py-4 px-8"
+                                        variant="outlined"
+                                    >
+                                        Pay with Bank Transfer
+                                    </Button>
+                                </FlutterWaveButton>
+                            )}
                         </div>
-                        <Button
-                            overrideStyle="w-full py-4 px-8  "
-                            variant="outlined"
-                        >
-                            {isLoading ?
-                                <div>
-                                    <span className="animate-spin">
-                                        <Image
-                                            src="/assets/icons/loader.svg"
-                                            alt="loader"
-                                            width={24}
-                                            height={24} />
-                                    </span>
-                                    <span>Uploading...</span>
-                                </div>
-                                : "Complete Checkout"}
-                        </Button>
                     </form>
                 </Form>
             </div>
