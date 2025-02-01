@@ -5,14 +5,13 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import { usePathname } from 'next/navigation'
-// import MobileNavigation from './MobileNavigation'
+import MobileNavigation from './MobileNavigation'
 
-// export const navElements = [
-//     { name: 'About', link: '/about' },
-//     { name: 'Services', link: '/service' },
-//     { name: 'Portfolio', link: '/service#portfolio' },
-//     { name: 'career', link: '/career' },
-// ]
+export const navElements = [
+    { name: 'Home', link: '/home' },
+    { name: 'About', link: '/home#about' },
+    { name: 'Service', link: '/home#service' },
+]
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -45,24 +44,22 @@ const Navbar = () => {
                             className='w-14 sm:w-20'
                         />
                     </Link>
-                    {/* <div>
-                            <ul className='hidden md:flex items-center capitalize gap-4 text-base'>
-                                {navElements.slice(0, 5).map((element, index) => {
-                                    const isActive = pathname === element.link;
-                                    return (
-                                        <li key={index} className={`${isActive ? "text-accent" : ""
-                                            } hover:text-accent `}>
-                                            <Link href={element.link}>
-                                                {element.name}
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div> */}
+                    <ul className='hidden md:flex items-center capitalize justify-evenly w-full  text-base'>
+                        {navElements.map((element, index) => {
+                            const isActive = pathname === element.link;
+                            return (
+                                <li key={index} className={`${isActive ? "text-accent" : ""
+                                    } hover:text-accent `}>
+                                    <Link href={element.link}>
+                                        {element.name}
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
                 <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
-                    <Link href="/plans">
+                    <Link href="/plans" className=' hidden sm:block'>
                         Plan
                     </Link>
                     <div
@@ -71,10 +68,10 @@ const Navbar = () => {
                     <Button variant='outlined' overrideStyle='py-1 px-4'>
                         <Link href="/sign-up">Get Started</Link>
                     </Button>
-                </div>
-                {/* <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-3 pb-[0.4rem] md:hidden cursor-pointer">
+                    <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-2 md:hidden cursor-pointer">
                         <MobileNavigation />
-                    </div> */}
+                    </div>
+                </div>
             </div>
         </nav>
     )

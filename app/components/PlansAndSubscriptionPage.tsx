@@ -65,12 +65,11 @@ const PlansAndSubscriptionPage = () => {
                         ></div>
                         <div className='flex flex-wrap gap-16 items-center justify-center md:justify-between w-full p-[40px]'>
                             <div className='flex flex-col gap-4'>
-                                <h3 className='mb-[1rem] text-[16px] text-left'>Yearly Unlimited Subscription</h3>
+                                <h3 className='mb-[1rem] text-[16px] text-left'>Monthly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>19.3</span></p>
-                                    <div className='bg-[#75d16d] px-2 text-white text-[10px] rounded-full relative top-[-5]'>Save 9%</div>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>20.00</span></p>
                                 </div>
-                                <i>Per month, billed each year ($220)</i>
+                                <i>Per month, billed each month ($20)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem] w-full"
@@ -84,11 +83,12 @@ const PlansAndSubscriptionPage = () => {
                     <article className='border border-light-300 shadow-xl flex-wrap rounded-[8px]  w-full md:h-auto'>
                         <div className='flex flex-wrap gap-16 items-center justify-center md:justify-between w-full p-[40px]'>
                             <div className='flex flex-col gap-4'>
-                                <h3 className='mb-[1rem] text-[16px] text-left'>Monthly Unlimited Subscription</h3>
+                                <h3 className='mb-[1rem] text-[16px] text-left'>Yearly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>20.00</span></p>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>19.3</span></p>
+                                    <div className='bg-[#75d16d] px-2 text-white text-[10px] rounded-full relative top-[-5]'>Save 9%</div>
                                 </div>
-                                <i>Per month, billed each month ($20)</i>
+                                <i>Per month, billed each year ($220)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem]"

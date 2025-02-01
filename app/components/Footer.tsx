@@ -44,8 +44,8 @@ const Footer = () => {
                 <Image
                     src={"/assets/images/x.svg"}
                     alt="LinkedIn Icon"
-                    height={18}
-                    width={18}
+                    height={15}
+                    width={15}
                     className='bg-white rounded-full p-1 w-10'
                 />
             </div>

@@ -7,14 +7,21 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const PaymentModal = ({ onClose }: { onClose: () => void }) => {
+    const { setAmount, amount, setSubscriptionType } = useGlobalContext()
     const [open, setOpen] = useState<boolean>(false);
     const router = useRouter()
+
+    const handleSubscriptionClick = (type: string, price: number) => {
+        setSubscriptionType(type);
+        setAmount(price);
+        router.push("/paymentGateway")
+    };
 
     return (
         <Dialog open={true} onOpenChange={onClose}>
@@ -40,7 +47,6 @@ const PaymentModal = ({ onClose }: { onClose: () => void }) => {
                         onClick={() => {
                             setOpen(false);
                             router.push("/plans")
-                            alert("Checking other plans...");
                         }}
                         className="text-white bg-brand rounded-[5px]"
                     >
@@ -49,11 +55,7 @@ const PaymentModal = ({ onClose }: { onClose: () => void }) => {
                     <Button
                         variant="default"
                         className="text-white bg-brand rounded-[5px]"
-                        onClick={() => {
-                            setOpen(false);
-                            router.push("/paymentGateway")
-                            alert("Proceeding to payment...");
-                        }}
+                        onClick={() => handleSubscriptionClick("3,000 words", 25)}
                     >
                         Proceed to Payment
                     </Button>

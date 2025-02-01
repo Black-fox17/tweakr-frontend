@@ -33,9 +33,8 @@ body {
           scrollbar-width: none;  /* Firefox */
     }
     
-  .section-padding {
-    @apply px-2 md:px-10 lg:px-14 xl:px-28;
-  }
+     .section-padding { @apply px-2 md:px-10 lg:px-14 xl:px-28}
+
    .section-padding-wide {
     @apply px-[11rem];
   }
@@ -120,14 +119,14 @@ body {
     @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-input {
-    @apply border-none shadow-none p-2 shad-no-focus placeholder:text-light-200 body-2 !important;
+    @apply border-none shadow-none p-4 text-left text-[0.9rem] shad-no-focus text-gray-600  placeholder:text-gray-600 body-2 !important;
   }
 
   .shad-form-item {
-    @apply flex h-[78px] flex-col justify-center rounded-xl border border-light-300 px-4 shadow-drop-1;
+    @apply flex  flex-col justify-center rounded-xl border border-light-300 shadow-drop-1;
   }
   .shad-form-label {
-    @apply text-light-100 pt-2 pl-1 body-2 w-full !important;
+    @apply text-[1rem] text-left text-gray-700 px-4 py-2 body-2 w-full !important;
   }
   .shad-form-message {
     @apply text-red text-left body-2 ml-4 !important;

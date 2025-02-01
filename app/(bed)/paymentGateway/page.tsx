@@ -17,6 +17,7 @@ import Button from "@/app/components/Button"
 import { useGlobalContext } from '@/context/GlobalContext'
 
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
+import { useRouter } from "next/navigation"
 
 
 const authFormSchema = z.object({
@@ -35,26 +36,28 @@ const authFormSchema = z.object({
 });
 
 const page = () => {
-    const { subscriptionType, amount } = useGlobalContext()
+    const { subscriptionType, amount, email } = useGlobalContext()
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [paymentMethod, setPaymentMethod] = useState<"card" | "mobilemoney">("card");
 
+    const router = useRouter()
+
     const userDetails = {
         name: 'Kelvin Joe Young',
-        email: 'zakariyyahshamsudeen@gmail.com',
-        phone_number: '07000001100', // Change phonenumber to phone_number
+        email: email,
+        phone_number: '07000001100',
         address: '123 Street Name, City, Country',
     };
 
     const flutterwaveConfig = {
         public_key: "FLWPUBK_TEST-7d6d6a7753da24b521bd1fd56b9b3ed0-X",
         tx_ref: Date.now().toString(),
-        amount: 1000,
+        amount: amount,
         currency: "USD",
         payment_options: 'card,mobilemoney,ussd',
         customer: {
             email: userDetails.email,
-            phone_number: userDetails.phone_number, // Fixed name here
+            phone_number: userDetails.phone_number,
             name: userDetails.name,
         },
         customizations: {
@@ -66,8 +69,8 @@ const page = () => {
 
     const handleFlutterwaveSuccess = (response: any) => {
         console.log("Payment successful:", response);
-        closePaymentModal(); // Close the modal programmatically
-        alert("Payment Successful!");
+        closePaymentModal();
+        router.push("/dashboard");
     };
 
     const handleFlutterwaveError = () => {
@@ -99,7 +102,6 @@ const page = () => {
         // Simulate form submission or API call
         setTimeout(() => {
             setIsLoading(false);
-            alert("Payment Successful!");
         }, 1000);
     };
 
@@ -301,14 +303,14 @@ const page = () => {
                                 </>
                             )}
                             {paymentMethod === "mobilemoney" && (
-                                <FlutterWaveButton {...flutterwaveButtonProps}>
-                                    <Button
-                                        overrideStyle="w-full py-4 px-8"
-                                        variant="outlined"
-                                    >
+                                <Button
+                                    overrideStyle="w-full py-4 px-8"
+                                    variant="outlined"
+                                >
+                                    <FlutterWaveButton {...flutterwaveButtonProps}>
                                         Pay with Bank Transfer
-                                    </Button>
-                                </FlutterWaveButton>
+                                    </FlutterWaveButton>
+                                </Button>
                             )}
                         </div>
                     </form>
@@ -342,7 +344,6 @@ const page = () => {
                     <p><strong>${amount}</strong></p>
                 </div>
                 <div className="h-[1px] w-full bg-light-200"></div>
-
             </div>
         </div>
     )

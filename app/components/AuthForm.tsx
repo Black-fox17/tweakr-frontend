@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useGlobalContext } from '@/context/GlobalContext'
 
 
 
@@ -23,15 +24,19 @@ type FormType = "sign-in" | "sign-up"
 
 const authFormSchema = (formType: FormType) => {
     return z.object({
-        email: z.string().email(),
-        password: formType === "sign-up" ? z.string().min(8).max(20) : z.string(),
-        confirmPassword: formType === "sign-up" ? z.string().min(8).max(20) : z.string(),
-    })
+        email: z.string().email({ message: "Invalid email address" }),
+        password: z.string().min(8, { message: "Password must be at least 8 characters" }).max(20),
+        confirmPassword: z.string().optional(),
+    }).refine((data) => formType === "sign-in" || data.password === data.confirmPassword, {
+        message: "Passwords must match",
+        path: ["confirmPassword"],
+    });
 }
 
 const AuthForm = ({ type }: { type: FormType }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const { setEmail, setPassword } = useGlobalContext()
 
     const router = useRouter()
 
@@ -43,7 +48,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         defaultValues: {
             email: "",
             password: "",
-            confirmPassword: "",
+            confirmPassword: type === "sign-up" ? "" : undefined,
         },
     })
 
@@ -51,7 +56,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true)
         setErrorMessage("")
-        router.push("/dashboard")
 
         try {
             // const user =
@@ -61,12 +65,16 @@ const AuthForm = ({ type }: { type: FormType }) => {
             //             email: values.email
             //         })
             //         : await signInUser({ email: values.email })
+            setEmail(values.email);
+            setPassword(values.password);
 
-            // setAccountId(user.accountId)
+            router.push("/dashboard");
         } catch (error) {
             setErrorMessage("Fail to create an account, Please try again")
         } finally {
-            setIsLoading(false)
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000);
         }
 
     }
@@ -141,10 +149,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
                         />
                     )}
                     <Button type="submit" className='form-submit-button' disabled={isLoading}>
-                        {type === "sign-in" ? "Sign In" : "Sign Up"}
-
+                        {!isLoading && (type === "sign-in" ? "Sign In" : "Sign Up")}
                         {isLoading && (
-                            <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className='animate-spin ml-2' />
+                            <div className='flex gap-2 items-center justify-center'>
+                                <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className='animate-spin ml-2' />
+                                <p>Processing ...</p>
+                            </div>
                         )}
                     </Button>
 
