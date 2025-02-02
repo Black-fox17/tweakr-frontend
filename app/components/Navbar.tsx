@@ -9,8 +9,8 @@ import MobileNavigation from './MobileNavigation'
 
 export const navElements = [
     { name: 'Home', link: '/' },
-    { name: 'About', link: '/home#about' },
-    { name: 'Service', link: '/home#service' },
+    { name: 'About', link: '/#about' },
+    { name: 'Service', link: '/#service' },
 ]
 
 const Navbar = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
     return (
         <nav className={`section-padding text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
             <div className='flex justify-between items-center w-full'>
-                <div className='flex items-center justify-between gap-20'>
+                <div className='flex flex-1 items-center justify-between gap-20'>
                     <Link href='/'>
                         <Image
                             src="/assets/images/Tweakr1.png"
@@ -45,7 +45,7 @@ const Navbar = () => {
                         />
                     </Link>
                 </div>
-                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
+                <div className="flex  flex-1 lg:items-center justify-evenly  lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
                     <ul className='hidden md:flex items-center capitalize justify-evenly w-full  text-base'>
                         {navElements.map((element, index) => {
                             const isActive = pathname === element.link;
@@ -58,16 +58,16 @@ const Navbar = () => {
                                 </li>
                             )
                         })}
+                        <Button variant='outlined' overrideStyle='py-1 px-4'>
+                            <Link href="/sign-up">Sign Up</Link>
+                        </Button>
+                        <Button variant='transparent' overrideStyle='py-1 px-4'>
+                            <Link href="/sign-in">Sign In</Link>
+                        </Button>
                     </ul>
-                    <Link href="/plans" className=' hidden sm:block'>
-                        Plan
-                    </Link>
-                    <Button variant='outlined' overrideStyle='py-1 px-4'>
-                        <Link href="/sign-up">Get Started</Link>
-                    </Button>
-                    <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-2 md:hidden cursor-pointer">
-                        <MobileNavigation />
-                    </div>
+                </div>
+                <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-2 md:hidden cursor-pointer">
+                    <MobileNavigation />
                 </div>
             </div>
         </nav>
