@@ -5,6 +5,7 @@ import Vision from "./components/Vision";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NewsLetter from "./components/NewsLetter";
+import OurTeam from "./components/OurTeam";
 
 
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Vision />
       <About />
       <HowItWorks />
+      <OurTeam />
       <NewsLetter />
       <Footer />
     </div>
