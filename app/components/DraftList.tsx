@@ -7,9 +7,9 @@ const DraftList = ({ drafts }: { drafts: [] }) => {
                 <p>No drafts uploaded yet.</p>
             ) : (
                 <ul className="space-y-2">
-                    {drafts.map((draft, index) => (
+                    {drafts?.map((draft, index) => (
                         <li key={index} className="p-2 border rounded">
-                            <span className="font-semibold">{draft.title}</span>
+                            <span className="font-semibold">{draft}</span>
                             <div className="flex gap-2 mt-1">
                                 <button className="text-blue-600">View</button>
                                 <button className="text-green-600">Edit</button>
