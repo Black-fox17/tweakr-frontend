@@ -4,6 +4,7 @@ import About from "./components/About";
 import Vision from "./components/Vision";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import NewsLetter from "./components/NewsLetter";
 
 
 
@@ -12,9 +13,10 @@ export default function Home() {
     <div className="">
       <Navbar />
       <Hero />
-      <About />
       <Vision />
+      <About />
       <HowItWorks />
+      <NewsLetter />
       <Footer />
     </div>
   );

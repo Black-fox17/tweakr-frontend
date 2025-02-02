@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import MobileNavigation from './MobileNavigation'
 
 export const navElements = [
-    { name: 'Home', link: '/home' },
+    { name: 'Home', link: '/' },
     { name: 'About', link: '/home#about' },
     { name: 'Service', link: '/home#service' },
 ]
@@ -44,12 +44,14 @@ const Navbar = () => {
                             className='w-14 sm:w-20'
                         />
                     </Link>
+                </div>
+                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
                     <ul className='hidden md:flex items-center capitalize justify-evenly w-full  text-base'>
                         {navElements.map((element, index) => {
                             const isActive = pathname === element.link;
                             return (
-                                <li key={index} className={`${isActive ? "text-accent" : ""
-                                    } hover:text-accent `}>
+                                <li key={index} className={`${isActive ? "text-brand" : ""
+                                    } hover:text-brand `}>
                                     <Link href={element.link}>
                                         {element.name}
                                     </Link>
@@ -57,14 +59,9 @@ const Navbar = () => {
                             )
                         })}
                     </ul>
-                </div>
-                <div className="flex flex-row lg:items-center justify-center w-auto lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
                     <Link href="/plans" className=' hidden sm:block'>
                         Plan
                     </Link>
-                    <div
-                        className='w-[1px] h-[25px] bg-gray-300 hidden sm:block'
-                    ></div>
                     <Button variant='outlined' overrideStyle='py-1 px-4'>
                         <Link href="/sign-up">Get Started</Link>
                     </Button>
