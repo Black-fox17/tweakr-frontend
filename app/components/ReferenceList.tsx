@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReferenceList = ({ references }: { references: [] }) => {
+const ReferenceList = ({ references }: { references: string[] }) => {
     return (
         <div>
             {references.length === 0 ? (

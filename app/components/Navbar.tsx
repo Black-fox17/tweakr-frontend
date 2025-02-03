@@ -58,10 +58,10 @@ const Navbar = () => {
                                 </li>
                             )
                         })}
-                        <Button variant='outlined' overrideStyle='py-2 px-4'>
+                        <Button variant='outlined' overrideStyle='py-1 px-4'>
                             <Link href="/sign-up">Sign Up</Link>
                         </Button>
-                        <Button variant='transparent' overrideStyle='py-2 px-4'>
+                        <Button variant='transparent' overrideStyle='py-1 px-4'>
                             <Link href="/sign-in">Sign In</Link>
                         </Button>
                     </ul>

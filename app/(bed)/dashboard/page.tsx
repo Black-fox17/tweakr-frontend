@@ -15,7 +15,7 @@ const page = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
     const [activeTab, setActiveTab] = useState<string>("drafts");
     const [drafts, setDrafts] = useState([]);
-    const [references, setReferences] = useState([]);
+    const [references, setReferences] = useState(["hello", "likj"]);
     const [citationStyle, setCitationStyle] = useState("APA");
 
 
@@ -64,7 +64,7 @@ const page = () => {
                 {activeTab === "drafts" && (
                     <>
                         <DraftForm onSuccess={handleFormSuccess} />
-                        <DraftList drafts={drafts} />
+                        {/* <DraftList drafts={drafts} /> */}
                     </>
                 )}
 

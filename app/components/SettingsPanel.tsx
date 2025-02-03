@@ -2,7 +2,7 @@ import React from "react";
 
 const SettingsPanel = (
     { citationStyle, setCitationStyle }
-        : { citationStyle: string, setCitationStyle: () => {} }
+        : { citationStyle: string, setCitationStyle: React.Dispatch<React.SetStateAction<string>> }
 ) => {
     return (
         <div className="flex flex-col gap-3">
