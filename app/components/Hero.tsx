@@ -1,31 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
 import Button from "./Button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
-    useEffect(() => {
-        const textElements = document.querySelectorAll(".typing");
-        textElements.forEach((element) => {
-            const text = element.innerHTML;
-            element.innerHTML = "";
-            const lines = text.split("<br>");
-            lines.forEach((line, lineIndex) => {
-                line.split("").forEach((char, charIndex) => {
-                    const span = document.createElement("span");
-                    span.innerHTML = char === " " ? "&nbsp;" : char;
-                    span.style.opacity = "0";
-                    span.style.display = "inline-block";
-                    span.style.animation = `fadeIn 0.5s ease forwards ${(lineIndex * line.length + charIndex) * 0.05}s`;
-                    element.appendChild(span);
-                });
-                if (lineIndex < lines.length - 1) {
-                    element.appendChild(document.createElement("br"));
-                }
-            });
-        });
-    }, []);
+
 
     return (
         <section className="bg-[#E8F4FA] flex items-center justify-center min-h-screen px-4 sm:px-8">
@@ -41,7 +21,9 @@ const Hero = () => {
                         Made for students, researchers, and professionals! Tweakr ensures your work meets the highest academic standards. Powered by professionals and trusted citation databases, we simplify the referencing process saving you time and effort.
                     </p>
                     <Button variant="outlined" overrideStyle="py-2 px-6">
-                        Get Started
+                        <Link href="/sign-up">
+                            Get Started
+                        </Link>
                     </Button>
                 </div>
 

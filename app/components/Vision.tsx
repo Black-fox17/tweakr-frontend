@@ -22,7 +22,7 @@ const Vision = () => {
                     <h1 className="text-[1.75rem] sm:text-[2rem] font-bold animate-fadeInFromTop leading-tight">
                         Our Vision
                     </h1>
-                    <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-justify typing break-words whitespace-normal">
+                    <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-justify break-words whitespace-normal">
                         Our vision is to revolutionize the way academic referencing is done by providing a smart, reliable, and user-friendly platform. We strive to become the global standard for citation tools, empowering students, lecturers, and professionals to focus on content creation while ensuring their work adheres to the highest referencing standards.
                     </p>
                 </div>

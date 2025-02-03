@@ -12,10 +12,10 @@ const About = () => {
                     <h1 className="text-[1.5rem] sm:text-[1.75rem] font-semibold animate-fadeInFromTop leading-tight break-words whitespace-normal">
                         Lorem Ipsum is simply dummy text of the printing.
                     </h1>
-                    <p className="text-[14px] sm:text-[15px] leading-[1.6] typing break-words whitespace-normal">
+                    <p className="text-[14px] sm:text-[15px] leading-[1.6]  break-words whitespace-normal">
                         Tweakr is a cutting-edge referencing team designed to simplify the academic referencing process. Our platform seamlessly integrates with documents to scan for key terms, match them against trusted academic journals and citation databases, and generate accurate in-text citations and comprehensive reference lists.
                     </p>
-                    <p className="text-[14px] sm:text-[15px] leading-[1.6] typing break-words whitespace-normal">
+                    <p className="text-[14px] sm:text-[15px] leading-[1.6] break-words whitespace-normal">
                         With Tweakr, we aim to enhance the accuracy, efficiency, and credibility of scholarly and professional documents by relieving you of the stress of citation processes.
                     </p>
                     <div>
