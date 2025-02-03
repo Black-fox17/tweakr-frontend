@@ -13,7 +13,7 @@ const Vision = () => {
                         width={385}
                         height={180}
                         alt="about us"
-                        className="w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] rounded-2xl animate-slideIn"
+                        className="w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] max-h-[350px] rounded-2xl animate-slideIn"
                     />
                 </div>
 
