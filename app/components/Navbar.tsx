@@ -32,7 +32,7 @@ const Navbar = () => {
         };
     }, []);
     return (
-        <nav className={`section-padding text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
+        <nav className={`text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
             <div className='flex justify-between items-center w-full'>
                 <div className='flex flex-1 items-center justify-between gap-20'>
                     <Link href='/'>
