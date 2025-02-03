@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Vision = () => {
     return (
-        <section className="flex items-center justify-center flex-col gap-12 section-padding py-16">
-            <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-6xl gap-10 px-4 sm:px-8">
+        <section className="flex items-center justify-center flex-col gap-12 section-padding py-16" id="about">
+            <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-6xl gap-10 px-4 sm:px-8 mt-8">
 
                 {/* Left: Image */}
                 <div className="flex-1 flex justify-center">

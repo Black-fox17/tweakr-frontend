@@ -31,6 +31,14 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const handleSmoothScroll = (event: React.MouseEvent, id: string) => {
+        event.preventDefault();
+        const target = document.getElementById(id);
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    };
     return (
         <nav className={`text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
             <div className='flex justify-between items-center w-full'>
@@ -52,9 +60,13 @@ const Navbar = () => {
                             return (
                                 <li key={index} className={`${isActive ? "text-brand" : ""
                                     } hover:text-brand `}>
-                                    <Link href={element.link}>
-                                        {element.name}
-                                    </Link>
+                                    {element.link.startsWith("/#") ? (
+                                        <a href={element.link} onClick={(e) => handleSmoothScroll(e, element.link.substring(2))}>
+                                            {element.name}
+                                        </a>
+                                    ) : (
+                                        <Link href={element.link}>{element.name}</Link>
+                                    )}
                                 </li>
                             )
                         })}
