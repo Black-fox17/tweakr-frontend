@@ -27,7 +27,7 @@ const MobileNavigation = () => {
                 />
             </DropdownMenuTrigger>
             <DropdownMenuContent
-                className=' w-60 font-semibold rounded-[2rem] fixed md:hidden right-0 top-8 border-0 bg-primarybg'
+                className=' w-60 font-semibold rounded-[2rem] fixed md:hidden right-0 top-8 border-0 bg-white shadow-2xl'
                 aria-label="Mobile navigation menu"
             >
                 <div
@@ -39,7 +39,7 @@ const MobileNavigation = () => {
                                 key={index}
                                 className='w-full'
                             >
-                                <Link href={element.link} className=' capitalize text-white text-4 hover:text-brand '
+                                <Link href={element.link} className=' capitalize text-4 hover:text-brand '
                                     aria-label={`Navigate to ${element.name}`}
                                 >
                                     {element.name}

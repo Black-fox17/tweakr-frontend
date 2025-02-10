@@ -14,7 +14,7 @@ const Hero = () => {
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.3, ease: "easeOut" }}
-                    className="flex-1 bg-white bg-opacity-10 py-6 sm:p-10 md:p-14 sm:rounded-3xl text-center md:text-left"
+                    className="flex sm:items-start items-center justtify-center flex-col flex-1 bg-white bg-opacity-10 py-6 sm:p-10 md:p-14 sm:rounded-3xl text-center md:text-left"
                 >
                     <h1 className="text-[2rem] sm:text-[2.7rem] font-semibold leading-tight">
                         You Write, <br className="hidden sm:block" />We Help You Reference!
@@ -22,7 +22,7 @@ const Hero = () => {
                     <p className="text-gray-600 text-sm sm:text-base mb-8 leading-7">
                         For writers, students, and researchers
                     </p>
-                    <Button variant="outlined" overrideStyle="py-2 px-6">
+                    <Button variant="outlined" overrideStyle="py-2 px-6 w-full">
                         <Link href="/sign-up">Get Started</Link>
                     </Button>
                 </motion.div>

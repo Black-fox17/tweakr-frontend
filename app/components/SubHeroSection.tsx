@@ -17,9 +17,9 @@ const SubHeroSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-xl sm:text-2xl md:text-3xl font-semibold leading-tight mt-8 text-brand"
+                className="text-xl sm:text-2xl md:text-3xl font-semibold text-center leading-tight mt-8 text-brand"
             >
-                "Tweakr: Effortless Citations, Seamless Research"
+                Tweakr: Effortless Citations, Seamless Research
             </motion.h1>
 
             <motion.p

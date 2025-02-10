@@ -17,7 +17,7 @@ const About = () => {
             >
                 {/* Left Content (Text) */}
                 <motion.div
-                    className="flex flex-col gap-5 text-center md:text-left flex-1"
+                    className="flex flex-col sm:items-start items-center gap-5 text-center md:text-left flex-1"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
