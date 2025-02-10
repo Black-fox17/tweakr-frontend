@@ -1,17 +1,17 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import Button from './Button'
-import { Input } from '@/components/ui/input'
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { motion } from "framer-motion";
+import Button from "./Button";
+import { Input } from "@/components/ui/input";
 import {
     Form,
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 
 const authFormSchema = () => {
     return z.object({
@@ -20,47 +20,73 @@ const authFormSchema = () => {
 };
 
 const NewsLetter = () => {
-    const formSchema = authFormSchema()
+    const formSchema = authFormSchema();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             newsletter: "",
         },
-    })
+    });
+
     return (
-        <section className="py-16 bg-[#E8F4FA] flex flex-col items-center justify-center w-full px-4 sm:px-8 gap-8">
-            <h1 className="text-center font-semibold text-[20px] sm:text-[24px] leading-[10px] sm:leading-[10px] ">
-                "Stay Updated with the Latest Insights!
-            </h1>
-            <p className="pb-4">
-                Subscribe to our newsletter and never miss important updates, expert tips, and exclusive content
-            </p>
+        <motion.section
+            className="py-16 bg-[#E8F4FA] flex flex-col items-center justify-center w-full px-4 sm:px-8 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+        >
+            <motion.h1
+                className="text-center font-semibold text-[20px] sm:text-[24px] leading-[30px] sm:leading-[10px]"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                Stay Updated with the Latest Insights!
+            </motion.h1>
+
+            <motion.p
+                className="pb-4 text-center"
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+            >
+                Subscribe to our newsletter and never miss important updates, expert tips, and exclusive content.
+            </motion.p>
+
             <Form {...form}>
-                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-[500px]">
+                <motion.div
+                    className="flex flex-col sm:flex-row gap-4 w-full max-w-[500px]"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    viewport={{ once: true }}
+                >
                     <FormField
                         control={form.control}
                         name="newsletter"
                         render={({ field }) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input placeholder="Enter your Email"
+                                    <Input
+                                        placeholder="Enter your Email"
                                         className="input-element w-full sm:w-[450px] p-3 text-sm sm:text-base"
-                                        {...field} />
+                                        {...field}
+                                    />
                                 </FormControl>
                             </FormItem>
                         )}
                     />
-                    <Button
-                        variant='outlined'
-                        overrideStyle="py-3 px-5 text-sm sm:text-base"
-                    >
+                    <Button variant="outlined" overrideStyle="py-3 px-5 text-sm sm:text-base">
                         SUBSCRIBE
                     </Button>
-                </div>
+                </motion.div>
             </Form>
-        </section>
-    )
-}
+        </motion.section>
+    );
+};
 
-export default NewsLetter
+export default NewsLetter;

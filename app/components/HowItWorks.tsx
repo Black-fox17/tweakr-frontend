@@ -8,7 +8,7 @@ import Button from "./Button";
 const steps = [
     {
         id: 1,
-        imageSrc: "/assets/images/Rectangle 15 (1).svg",
+        imageSrc: "/assets/images/Rectangle 18.png",
         imageAlt: "how it works",
         stepNumber: 1,
         title: "Accessing the Application",
@@ -16,7 +16,7 @@ const steps = [
     },
     {
         id: 2,
-        imageSrc: "/assets/images/Rectangle 15 (1).svg",
+        imageSrc: "/assets/images/Rectangle 19.png",
         imageAlt: "Dashboard Overview",
         stepNumber: 2,
         title: "Dashboard Overview",
@@ -25,7 +25,7 @@ const steps = [
     },
     {
         id: 3,
-        imageSrc: "/assets/images/Rectangle 15 (1).svg",
+        imageSrc: "/assets/images/rec1.jpg",
         imageAlt: "how it works",
         stepNumber: 3,
         title: "Uploading Documents",
@@ -34,7 +34,7 @@ const steps = [
     },
     {
         id: 4,
-        imageSrc: "/assets/images/Rectangle 15 (1).svg",
+        imageSrc: "/assets/images/rec2.jpg",
         imageAlt: "how it works",
         stepNumber: 4,
         title: "Processing & Downloading",

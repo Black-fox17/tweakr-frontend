@@ -1,5 +1,10 @@
+"use client";
+
+
 import Image from 'next/image';
 import React from 'react';
+import { motion } from "framer-motion";
+
 
 const teamMembers = [
     {
@@ -25,11 +30,23 @@ const teamMembers = [
 const OurTeam = () => {
     return (
         <section className="flex flex-col items-start justify-center section-padding py-20">
-            <h3 className="text-[25px] font-semibold mb-12">Our Team</h3>
+            <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="text-[25px] font-semibold mb-12"
+            >
+                Our Team
+            </motion.h3>
             <div className="flex flex-wrap justify-evenly items-center w-full">
                 {teamMembers.map((member, index) => (
-                    <article
+                    <motion.article
                         key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.2 }}
+                        viewport={{ once: true }}
                         className="flex flex-col items-start justify-center rounded-t-[10px] max-w-[332px] w-full"
                     >
                         <Image
@@ -43,7 +60,7 @@ const OurTeam = () => {
                             <p className="text-gray-500 text-4">{member.position}</p>
                             <p className="font-semibold text-[16px]">{member.name}</p>
                         </div>
-                    </article>
+                    </motion.article>
                 ))}
             </div>
         </section>
