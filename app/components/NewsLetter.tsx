@@ -30,10 +30,12 @@ const NewsLetter = () => {
     })
     return (
         <section className="py-16 bg-[#E8F4FA] flex flex-col items-center justify-center w-full px-4 sm:px-8 gap-8">
-            <h1 className="text-center font-semibold text-[20px] sm:text-[24px] leading-[30px] sm:leading-[35px]">
-                Lorem Ipsum is simply dummy <br className="hidden sm:block" />
-                text of the printing.
+            <h1 className="text-center font-semibold text-[20px] sm:text-[24px] leading-[10px] sm:leading-[10px] ">
+                "Stay Updated with the Latest Insights!
             </h1>
+            <p className="pb-4">
+                Subscribe to our newsletter and never miss important updates, expert tips, and exclusive content
+            </p>
             <Form {...form}>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-[500px]">
                     <FormField

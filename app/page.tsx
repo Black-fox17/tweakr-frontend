@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NewsLetter from "./components/NewsLetter";
 import OurTeam from "./components/OurTeam";
+import SubHeroSection from "./components/SubHeroSection";
 
 
 
@@ -14,6 +15,7 @@ export default function Home() {
     <div className="">
       <Navbar />
       <Hero />
+      <SubHeroSection />
       <Vision />
       <About />
       <HowItWorks />

@@ -10,7 +10,7 @@ const About = () => {
                 {/* Left Content (Text) */}
                 <div className="flex flex-col gap-5 text-center md:text-left flex-1">
                     <h1 className="text-[1.5rem] sm:text-[1.75rem] font-semibold animate-fadeInFromTop leading-tight break-words whitespace-normal">
-                        Lorem Ipsum is simply dummy text of the printing.
+                        Know More About Tweakr
                     </h1>
                     <p className="text-[14px] sm:text-[15px] leading-[1.6]  break-words whitespace-normal">
                         Tweakr is a cutting-edge referencing team designed to simplify the academic referencing process. Our platform seamlessly integrates with documents to scan for key terms, match them against trusted academic journals and citation databases, and generate accurate in-text citations and comprehensive reference lists.
