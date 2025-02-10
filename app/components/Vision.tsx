@@ -19,7 +19,7 @@ const Vision = () => {
             >
                 {/* Left: Image */}
                 <motion.div
-                    className="flex-1 flex justify-center"
+                    className="flex-1 flex justify-center w-full"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -30,7 +30,7 @@ const Vision = () => {
                         width={385}
                         height={180}
                         alt="about us"
-                        className="w-full  md:max-w-[400px] max-h-[350px] rounded-2xl"
+                        className="w-full  md:max-w-[400px] max-h-[270px] rounded-2xl"
                     />
                 </motion.div>
 
