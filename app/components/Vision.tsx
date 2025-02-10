@@ -30,7 +30,7 @@ const Vision = () => {
                         width={385}
                         height={180}
                         alt="about us"
-                        className="w-full w-full md:max-w-[400px] max-h-[350px] rounded-2xl"
+                        className="w-full  md:max-w-[400px] max-h-[350px] rounded-2xl"
                     />
                 </motion.div>
 
