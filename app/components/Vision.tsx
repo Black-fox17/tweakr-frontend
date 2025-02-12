@@ -26,7 +26,7 @@ const Vision = () => {
                     viewport={{ once: true }}
                 >
                     <Image
-                        src="/assets/images/Rectangle 16.png"
+                        src="/assets/images/Rectangle 16.svg"
                         width={385}
                         height={180}
                         alt="about us"

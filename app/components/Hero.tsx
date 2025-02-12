@@ -7,8 +7,8 @@ import Link from "next/link";
 
 const Hero = () => {
     return (
-        <section className="bg-[#E8F4FA] flex items-center justify-center min-h-screen px-4 sm:px-8">
-            <div className="max-w-[90rem] flex flex-col-reverse md:flex-row items-center w-full gap-8">
+        <section className="bg-[#E8F4FA] flex items-center justify-center px-4 sm:px-8 w-full">
+            <div className="flex flex-col-reverse md:flex-row items-center w-full gap-8">
                 {/* Text Content */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
