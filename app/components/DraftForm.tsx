@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import React, { useState } from 'react'
 import Button from "./Button"
+import YearDropdown from "./Dropdown"
 
 
 const authFormSchema = () => {
@@ -113,7 +114,9 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
                             </FormItem>
                         )}
                     />
-                    <FormField
+
+                    <YearDropdown />
+                    {/* <FormField
                         control={form.control}
                         name="year"
                         render={({ field }) => (
@@ -129,7 +132,7 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
                                 <FormMessage className='shad-form-message ' />
                             </FormItem>
                         )}
-                    />
+                    /> */}
                     <Button
                         overrideStyle="w-full py-2 px-8  "
                         variant="outlined"

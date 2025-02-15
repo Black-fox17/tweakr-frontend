@@ -22,8 +22,8 @@ const MobileNavigation = () => {
                 <Image
                     src="/assets/icons/harmburger.svg"
                     alt='forcythe logo'
-                    width={18}
-                    height={18}
+                    width={20}
+                    height={20}
                 />
             </DropdownMenuTrigger>
             <DropdownMenuContent

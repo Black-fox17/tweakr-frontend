@@ -11,6 +11,7 @@ const SubHeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
             className="flex flex-col items-center justify-center gap-4 px-4 sm:px-8 md:px-16 py-16"
+            id="about"
         >
             <motion.h1
                 initial={{ opacity: 0, y: 20 }}

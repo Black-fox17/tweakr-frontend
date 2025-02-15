@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const About = () => {
     return (
-        <section className="flex items-center justify-center flex-col gap-12 py-16 px-4 sm:px-8">
+        <section className="flex items-center justify-center flex-col gap-12 py-16 px-4 sm:px-8 contain-paint">
             <motion.div
                 className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-6xl gap-10"
                 initial={{ opacity: 0, y: 50 }}

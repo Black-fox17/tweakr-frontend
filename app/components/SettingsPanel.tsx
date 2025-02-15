@@ -5,7 +5,7 @@ const SettingsPanel = (
         : { citationStyle: string, setCitationStyle: React.Dispatch<React.SetStateAction<string>> }
 ) => {
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 py-8">
             <label className="text-sm font-semibold">Select Citation Style:</label>
             <select
                 className="border p-2 rounded"

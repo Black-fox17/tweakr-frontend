@@ -7,8 +7,7 @@ import { motion } from "framer-motion";
 const Vision = () => {
     return (
         <section
-            id="about"
-            className="flex items-center justify-center flex-col gap-12 py-16 px-4 sm:px-8"
+            className="flex items-center justify-center flex-col gap-12 py-16 px-4 sm:px-8 contain-paint"
         >
             <motion.div
                 className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-6xl gap-10"
