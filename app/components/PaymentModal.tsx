@@ -32,10 +32,10 @@ const PaymentModal = ({ onClose }: { onClose: () => void }) => {
                         Our service calculates costs based on word count:
                         <ul className="mt-4 list-disc list-inside">
                             <li>
-                                <strong className="text-brand">₦2,500</strong> for up to 3,000 words (Nigerian users).
+                                <strong className="text-brand">₦1,500</strong> for up to 3,000 words (Nigerian users).
                             </li>
                             <li>
-                                <strong className="text-brand">$2.5</strong> for up to 3,000 words (Non-Nigerian users).
+                                <strong className="text-brand">$1.5</strong> for up to 3,000 words (Non-Nigerian users).
                             </li>
                         </ul>
                         Please choose your preferred option below:

@@ -23,7 +23,11 @@ const authFormSchema = () => {
     return z.object({
         title: z.string().min(1, "Title is required"),
         author: z.string().min(2, "Author name must be at least 2 characters").max(50),
-        year: z.string().min(4, "Year must be 4 digits").max(4, "Year must be 4 digits"),
+        year: z.coerce
+            .number()
+            .int()
+            .min(2015, "Year must be at least 2015")
+            .max(new Date().getFullYear(), "Year cannot be in the future"),
         files: z
             .array(z.instanceof(File))
             .nonempty("You must upload at least one file"),
@@ -42,7 +46,7 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
             files: [] as File[],
             title: "",
             author: "",
-            year: "",
+            year: undefined,
         },
     })
 
@@ -115,24 +119,22 @@ const DraftForm = ({ onSuccess }: { onSuccess: () => void }) => {
                         )}
                     />
 
-                    <YearDropdown />
-                    {/* <FormField
+                    <FormField
                         control={form.control}
                         name="year"
                         render={({ field }) => (
                             <FormItem>
-                                <div className='flex flex-col gap-4'>
-                                    <FormLabel className='input-label'>Paper Year</FormLabel>
+                                <div className="flex flex-col gap-4">
+                                    <FormLabel className="input-label">Paper Year</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter the Title"
-                                            className='input-element'
-                                            {...field} />
+                                        <YearDropdown value={field.value} onChange={field.onChange} />
                                     </FormControl>
                                 </div>
-                                <FormMessage className='shad-form-message ' />
+                                <FormMessage />
                             </FormItem>
                         )}
-                    /> */}
+                    />
+
                     <Button
                         overrideStyle="w-full py-2 px-8  "
                         variant="outlined"

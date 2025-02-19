@@ -67,14 +67,14 @@ const PlansAndSubscriptionPage = () => {
                             <div className='flex flex-col gap-4'>
                                 <h3 className='mb-[1rem] text-[16px] text-left'>Monthly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>20.00</span></p>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>15.00</span></p>
                                 </div>
-                                <i>Per month, billed each month ($20)</i>
+                                <i>Per month, billed each month ($15)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem] w-full"
                                 variant='outlined'
-                                onClick={() => handleSubscriptionClick("Yearly", 220)}
+                                onClick={() => handleSubscriptionClick("Yearly", 15)}
                             >
                                 Subscribe Now
                             </Button>
@@ -85,15 +85,15 @@ const PlansAndSubscriptionPage = () => {
                             <div className='flex flex-col gap-4'>
                                 <h3 className='mb-[1rem] text-[16px] text-left'>Yearly Unlimited Subscription</h3>
                                 <div className='flex gap-2 items-start justify-start'>
-                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>19.3</span></p>
+                                    <p > <sup className='text-[20px]'>$</sup><span className='text-[40px]'>6.67</span></p>
                                     <div className='bg-[#75d16d] px-2 text-white text-[10px] rounded-full relative top-[-5]'>Save 9%</div>
                                 </div>
-                                <i>Per month, billed each year ($220)</i>
+                                <i>Per month, billed each year ($80)</i>
                             </div>
                             <Button
                                 overrideStyle="text-white text-[1.3rem] py-[1rem] px-[1.3rem]"
                                 variant='outlined'
-                                onClick={() => handleSubscriptionClick("Monthly", 20)}
+                                onClick={() => handleSubscriptionClick("Monthly", 80)}
                             >
                                 Subscribe Now
                             </Button>

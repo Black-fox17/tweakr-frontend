@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 
-const YearDropdown = () => {
-    const [selectedYear, setSelectedYear] = useState<number | "">("");
-
-    // Generate years from 2015 to current year
+const YearDropdown = ({ value, onChange }: { value: number | ""; onChange: (year: number) => void }) => {
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: currentYear - 2015 + 1 }, (_, index) => 2015 + index);
 
     return (
         <div className="flex flex-col gap-3">
-            <label className="input-label">Paper Year</label>
             <select
-                className="border p-2 input-element outline-none"
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(Number(e.target.value))}
+                className="border py-2 px-4 input-element outline-none"
+                value={value}
+                onChange={(e) => onChange(Number(e.target.value))}
             >
                 <option value="">Select Year</option>
                 {years.map((year) => (
