@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 const Hero = () => {
     return (
-        <div className='bg-[#010F34] p-4 sm:p-8 text-white flex flex-col items-center justify-center relative'>
+        <div className='bg-[#010F34] border-b border-b-[#DEE5ED] rounded-b-[50px] p-4 sm:p-8 text-white flex flex-col items-center justify-center shadow-xl relative'>
             <img src="/assets/Lights.png" alt="light" className='absolute top-0 left-0' />
             <img src="/assets/Lights (2).png" alt="light" className='absolute top-0 right-0' />
             <div className='flex flex-col items-center justify-center gap-12'>
@@ -25,9 +25,13 @@ const Hero = () => {
                     </button>
                 </div>
             </div>
-            <div className='flex'>
+            <div className='flex relative'>
+                <img src="/assets/Frame 1707479766.svg" alt="img" className='absolute top-[-4rem]' />
                 <img src="/assets/a frazzled student surrounded by citation style guides.png" alt="" />
-                <img src="/assets/a relaxed student whose document magically gains perfect citations..png" alt="" />
+                <div className='relative'>
+                    <img src="/assets/a relaxed student whose document magically gains perfect citations..png" alt="" />
+                    <img src="/assets/Frame 1707479763.png" alt="img" className='absolute bottom-0 right-[-6rem] max-w-[220px]' />
+                </div>
             </div>
         </div>
     )
