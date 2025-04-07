@@ -1,87 +1,64 @@
 "use client"
 
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import Button from './Button'
-import { usePathname } from 'next/navigation'
-import MobileNavigation from './MobileNavigation'
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react'; // Icons, optional
 
-export const navElements = [
-    { name: 'Home', link: '/' },
-    { name: 'About', link: '/#about' },
-    { name: 'Service', link: '/#service' },
-]
+
 
 const Navbar = () => {
-    const pathname = usePathname()
-    const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState('Benefits');
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    const handleSmoothScroll = (event: React.MouseEvent, id: string) => {
-        event.preventDefault();
-        const target = document.getElementById(id);
-        if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-        }
-    };
+    const navLinks = ['Benefits', 'App', 'Pricing', 'About'];
     return (
-        <nav className={`text-4 fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm ${scrolled ? 'shadow-xl' : ''}`}>
-            <div className='flex justify-between items-center w-full'>
-                <div className='flex flex-1 items-center justify-between gap-20'>
-                    <Link href='/'>
-                        <Image
-                            src="/assets/images/Tweakr1.png"
-                            alt='tweakR-logo'
-                            width={150}
-                            height={4}
-                            className='w-14 sm:w-20'
-                        />
-                    </Link>
-                </div>
-                <div className="flex  flex-1 lg:items-center justify-evenly  lg:border-none gap-4 lg:flex-row whitespace-nowrap ">
-                    <ul className='hidden md:flex items-center capitalize justify-evenly w-full  text-base'>
-                        {navElements.map((element, index) => {
-                            const isActive = pathname === element.link;
-                            return (
-                                <li key={index} className={`${isActive ? "text-brand" : ""
-                                    } hover:text-brand `}>
-                                    {element.link.startsWith("/#") ? (
-                                        <a href={element.link} onClick={(e) => handleSmoothScroll(e, element.link.substring(2))}>
-                                            {element.name}
-                                        </a>
-                                    ) : (
-                                        <Link href={element.link}>{element.name}</Link>
-                                    )}
-                                </li>
-                            )
-                        })}
-                        <Button variant='outlined' overrideStyle='py-1 px-4'>
-                            <Link href="/sign-up">Sign Up</Link>
-                        </Button>
-                        <Button variant='transparent' overrideStyle='py-1 px-4'>
-                            <Link href="/sign-in">Sign In</Link>
-                        </Button>
-                    </ul>
-                </div>
-                <div className="bg-white bg-opacity-10 rounded-[0.35rem] px-3 pt-2 md:hidden cursor-pointer">
-                    <MobileNavigation />
-                </div>
+        <nav className='border border-[#343F5D] rounded-full p-2 w-full sm:w-[720px] flex items-center justify-between relative'>
+            <img src="/assets/Coloured.png" alt="logo" className='w-[129px] h-[40px]' />
+
+            <div className="sm:hidden">
+                <button onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
             </div>
+
+            <ul className="hidden sm:flex items-center justify-center gap-4 text-[#828282] font-semibold">
+                {navLinks.map((link) => (
+                    <li
+                        key={link}
+                        onClick={() => setActive(link)}
+                        className={`cursor-pointer rounded-full transition-all  ${active === link ? ' px-[18px] py-[10px] bg-[#555E77] text-white' : ''
+                            }`}>
+                        {link}
+                    </li>
+                ))}
+            </ul>
+
+
+            <button className='"hidden sm:block bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
+                Login
+            </button>
+
+            {isOpen && (
+                <div className="absolute top-full left-0 w-full bg-[#010F34] mt-2 rounded-xl p-4 flex flex-col gap-4 sm:hidden z-50">
+                    <ul className="flex flex-col gap-2 text-[#828282] font-semibold">
+                        {navLinks.map((link) => (
+                            <li
+                                key={link}
+                                onClick={() => {
+                                    setActive(link);
+                                    setIsOpen(false);
+                                }}
+                                className={`cursor-pointer px-4 py-2 rounded-full transition-all ${active === link ? 'bg-[#555E77] text-white' : ''
+                                    }`}
+                            >
+                                {link}
+                            </li>
+                        ))}
+                    </ul>
+                    <button className="bg-[#31DAC0] rounded-full text-[#010F34] py-3 px-6 font-semibold w-full">
+                        Login
+                    </button>
+                </div>
+            )}
         </nav>
     )
 }

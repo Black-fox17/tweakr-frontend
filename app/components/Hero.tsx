@@ -1,50 +1,36 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Button from "./Button";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react'
+import Navbar from './Navbar'
 
 const Hero = () => {
     return (
-        <section className="bg-[#E8F4FA] flex items-center justify-center px-4 sm:px-8 w-full contain-paint">
-            <div className="flex flex-col-reverse md:flex-row items-center gap-8 w-full">
-                {/* Text Content */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1.3, ease: "easeOut" }}
-                    className="flex sm:items-start items-center justtify-center flex-col flex-1 bg-white bg-opacity-10 pb-12 sm:pb-0 py-8 sm:p-10 md:p-14 sm:rounded-3xl text-center md:text-left"
-                >
-                    <h1 className="text-[2rem] sm:text-[2.7rem] font-semibold leading-tight">
-                        You Write, <br className="hidden sm:block" />We Help You Reference!
-                    </h1>
-                    <p className="text-gray-600 text-sm sm:text-base mb-6 leading-7">
-                        For writers, students, and researchers
-                    </p>
-                    <Button variant="outlined" overrideStyle="py-2 px-6 w-full">
-                        <Link href="/sign-up">Get Started</Link>
-                    </Button>
-                </motion.div>
-
-                {/* Hero Image */}
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.8 }}
-                    className="flex-1 flex justify-center"
-                >
-                    <Image
-                        src="/assets/images/Bill Sitting using laptop 1.svg"
-                        width={500}
-                        height={400}
-                        className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px]"
-                        alt="Hero Illustration"
-                    />
-                </motion.div>
+        <div className='bg-[#010F34] p-4 sm:p-8 text-white flex flex-col items-center justify-center relative'>
+            <img src="/assets/Lights.png" alt="light" className='absolute top-0 left-0' />
+            <img src="/assets/Lights (2).png" alt="light" className='absolute top-0 right-0' />
+            <div className='flex flex-col items-center justify-center gap-12'>
+                <Navbar />
+                <div className='relative flex flex-col items-center justify-center gap-8 pb-10'>
+                    <div className='flex flex-col items-center justify-center max-w-[901px] text-center'>
+                        <div className='text-[#646464] flex items-center gap-2 bg-white rounded-full p-2 self-center'>
+                            <img src="/assets/Images Container.png" alt="img" className='w-[56px] h-[26px]' />
+                            <p>3,500+ Pro Users</p>
+                        </div>
+                        <div>
+                            <h1 className='text-[64px] font-semibold text-center'>One Upload. One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
+                        </div>
+                        <p className='text-[18px]'>Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
+                    </div>
+                    <img src="/assets/Vector.svg" alt="bg" className='absolute bottom-0' />
+                    <button className=' bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
+                        Cite It Right
+                    </button>
+                </div>
             </div>
-        </section>
-    );
-};
+            <div className='flex'>
+                <img src="/assets/a frazzled student surrounded by citation style guides.png" alt="" />
+                <img src="/assets/a relaxed student whose document magically gains perfect citations..png" alt="" />
+            </div>
+        </div>
+    )
+}
 
-export default Hero;
+export default Hero
