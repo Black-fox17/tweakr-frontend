@@ -14,7 +14,7 @@ const Navbar = () => {
         <nav className='border border-[#343F5D] rounded-full p-2 w-full sm:w-[720px] flex items-center justify-between relative'>
             <img src="/assets/Coloured.png" alt="logo" className='w-[129px] h-[40px]' />
 
-            <div className="sm:hidden">
+            <div className="sm:hidden px-4">
                 <button onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -33,7 +33,7 @@ const Navbar = () => {
             </ul>
 
 
-            <button className='"hidden sm:block bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
+            <button className='hidden sm:block bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
                 Login
             </button>
 
