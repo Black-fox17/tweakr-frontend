@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import HowItWorks from "./components/HowItWorks";
 import Benefit from "./components/Benefit";
 import TestimonialsSection from "./components/Testimonial";
+import Footer from "./components/Footer";
 
 
 export default function Home() {
@@ -63,6 +64,7 @@ export default function Home() {
       <Benefit />
       <TestimonialsSection />
       <FAQs />
+      <Footer />
     </div>
   );
 }

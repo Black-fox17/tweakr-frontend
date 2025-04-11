@@ -14,7 +14,7 @@ export default function HowItWorks() {
         <div className="container mx-auto flex flex-col items-center justify-center gap-8 py-10 px-4 overflow-hidden">
             {/* Image from top */}
             <motion.img
-                src="/assets/image 4.png"
+                src="/assets/Frame 1707479767.png"
                 alt="img"
                 className="w-full max-w-[678px]"
                 initial="hidden"
