@@ -12,9 +12,9 @@ const Hero = () => {
             <div className='flex relative flex-col items-center justify-center'>
                 <motion.div
                     initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.5 }}                >
                     <Navbar />
                     <div
                         className='flex flex-col items-center justify-center max-w-[901px] text-center pt-12'>
@@ -23,18 +23,19 @@ const Hero = () => {
                             <p>3,500+ Pro Users</p>
                         </div>
                         <div>
-                            <h1 className='text-[64px] font-semibold text-center'>One Upload. One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
+                            <h1 className="text-[26px] sm:text-[48px] md:text-[64px] font-semibold text-center ">One Upload. One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
                         </div>
                     </div>
                 </motion.div>
                 <img src="/assets/Vector.svg" alt="bg" className='absolute bottom-0' />
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.5 }}
                 >
                     <div className='flex flex-col items-center justify-center gap-8 pb-12'>
-                        <p className='text-[18px] text-center max-w-[901px]'>Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
+                        <p className="ext-[16px] sm:text-[18px] text-center max-w-[901px]">Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
                         <button className=' bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
                             Cite It Right
                         </button>
@@ -42,14 +43,46 @@ const Hero = () => {
                 </motion.div>
             </div>
             <div className='flex relative'>
-                <img src="/assets/Frame 1707479766.svg" alt="img" className='absolute top-[-4rem]' />
-                <img src="/assets/a frazzled student surrounded by citation style guides.png" alt="" />
-                <div className='relative'>
-                    <img src="/assets/a relaxed student whose document magically gains perfect citations..png" alt="" />
-                    <img src="/assets/Frame 1707479763.png" alt="img" className='absolute bottom-0 right-[-6rem] max-w-[220px]' />
-                </div>
+                <motion.div
+                    className="relative"
+                    initial={{ x: -100, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.5 }}
+                >
+                    <motion.img
+                        initial={{ rotate: -10, opacity: 0, x: -50 }}
+                        whileInView={{ rotate: 0, opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        src="/assets/a frazzled student surrounded by citation style guides.png"
+                        alt=""
+                        className="max-w-full sm:max-w-[280px] md:max-w-[526px]"
+                    />
+                    <img src="/assets/left-stroke.svg" alt="stroke" className='absolute top-[-4.5rem] left-0' />
+                </motion.div>
+                <motion.div
+                    className="relative"
+                    initial={{ x: 100, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.5 }}
+                >
+                    <img src="/assets/right stroke.svg" alt="stroke" className='absolute top-[-4.5rem] right-0' />
+                    <motion.img
+                        initial={{ rotate: 10, opacity: 0, x: 50 }}
+                        whileInView={{ rotate: 0, opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        src="/assets/a relaxed student whose document magically gains perfect citations..png" alt=""
+                        className="max-w-full sm:max-w-[280px] md:max-w-[526px]"
+                    />
+                    <img src="/assets/Frame 1707479763.png" alt="img"
+                        className="hidden sm:block absolute bottom-0 -right-[6rem] max-w-[150px] md:max-w-[220px]"
+                    />
+                </motion.div>
             </div>
-        </div>
+        </div >
     )
 }
 

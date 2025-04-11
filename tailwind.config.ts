@@ -1,83 +1,99 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-	darkMode: ['class'],
+module.exports = {
 	content: [
-		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
-		'./components/**/*.{js,ts,jsx,tsx,mdx}',
-		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+		"./src/**/*.{html,js,ts,jsx,tsx}",
+		"app/**/*.{ts,tsx}",
+		"components/**/*.{ts,tsx}",
 	],
 	theme: {
 		extend: {
 			colors: {
-				brand: {
-					'100': '#DA4381',
-					DEFAULT: '#c7316e'
+				absolutewhite: "var(--absolutewhite)",
+				"dark-10": "var(--dark-10)",
+				"dark-20": "var(--dark-20)",
+				"dark-24": "var(--dark-24)",
+				"foundation-blackb200": "var(--foundation-blackb200)",
+				"foundation-blackblack-1": "var(--foundation-blackblack-1)",
+				"foundation-blackblack-100": "var(--foundation-blackblack-100)",
+				"foundation-blackblack-400": "var(--foundation-blackblack-400)",
+				"foundation-blackblack-500": "var(--foundation-blackblack-500)",
+				"foundation-blackblack-6": "var(--foundation-blackblack-6)",
+				"foundation-blackblack-9": "var(--foundation-blackblack-9)",
+				"foundation-blueblue-100": "var(--foundation-blueblue-100)",
+				"foundation-blueblue-300": "var(--foundation-blueblue-300)",
+				"foundation-blueblue-400": "var(--foundation-blueblue-400)",
+				"foundation-blueblue-50": "var(--foundation-blueblue-50)",
+				"foundation-blueblue-500": "var(--foundation-blueblue-500)",
+				"foundation-blueblue-600": "var(--foundation-blueblue-600)",
+				"foundation-blueblue-700": "var(--foundation-blueblue-700)",
+				"foundation-blueblue-900": "var(--foundation-blueblue-900)",
+				"foundation-greyg300": "var(--foundation-greyg300)",
+				"foundation-whitewhite-300": "var(--foundation-whitewhite-300)",
+				"foundation-whitewhite-50": "var(--foundation-whitewhite-50)",
+				"foundation-whitewhite-500": "var(--foundation-whitewhite-500)",
+				"foundation-whitewhite-800": "var(--foundation-whitewhite-800)",
+				"foundation-whitewhite-900": "var(--foundation-whitewhite-900)",
+				"light-90": "var(--light-90)",
+				"light-blue90": "var(--light-blue90)",
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
+				primary: {
+					DEFAULT: "hsl(var(--primary))",
+					foreground: "hsl(var(--primary-foreground))",
 				},
-				red: '#FF7474',
-				error: '#b80000',
-				green: '#3DD9B3',
-				blue: '#56B8FF',
-				pink: '#EEA8FD',
-				orange: '#F9AB72',
-				light: {
-					'100': '#333F4E',
-					'200': '#A3B2C7',
-					'300': '#F2F5F9',
-					'400': '#F2F4F8'
+				secondary: {
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))",
 				},
-				dark: {
-					'100': '#04050C',
-					'200': '#131524'
+				destructive: {
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))",
 				},
-				primarybg: '#030516',
-				secondary: '#1f3449',
-				linearbg: 'rgba(12,38,69,0)',
-				linearbg2: 'rgba(7,22,38,0)',
-				accent: '#60a6e7',
-				darkgray: '#aea9b1',
-				lightgray: '#e6e0e9'
+				muted: {
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))",
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))",
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))",
+				},
+				card: {
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))",
+				},
 			},
 			fontFamily: {
-				poppins: [
-					'var(--font-poppins)'
-				]
+				bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
 			},
-			boxShadow: {
-				'drop-1': '0px 10px 30px 0px rgba(66, 71, 97, 0.1)',
-				'drop-2': '0 8px 30px 0 rgba(65, 89, 214, 0.3)',
-				'drop-3': '0 8px 30px 0 rgba(65, 89, 214, 0.1)'
-			},
+			boxShadow: { "drop-shadow-200": "var(--drop-shadow-200)" },
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
 			},
 			keyframes: {
-				'caret-blink': {
-					'0%,70%,100%': {
-						opacity: '1'
-					},
-					'20%,50%': {
-						opacity: '0'
-					}
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
 				},
-				slideIn: {
-					'0%': { transform: 'translateX(-100px)', opacity: '0' },
-					'100%': { transform: 'translateX(0)', opacity: '1' },
-				},
-				fadeInFromTop: {
-					'0%': { transform: 'translateY(-50px)', opacity: '0' },
-					'100%': { transform: 'translateY(0)', opacity: '1' },
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
 				},
 			},
 			animation: {
-				'caret-blink': 'caret-blink 1.25s ease-out infinite',
-				slideIn: 'slideIn 1s ease-out',
-				fadeInFromTop: 'fadeInFromTop 1s ease-out',
-			}
-		}
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+			},
+		},
+		container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
 	},
-	plugins: [require('tailwindcss-animate')],
+	plugins: [],
+	darkMode: ["class"],
 };
-export default config;
