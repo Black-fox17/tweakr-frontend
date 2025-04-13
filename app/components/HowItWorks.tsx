@@ -11,12 +11,12 @@ const fadeInFrom = (direction: "top" | "bottom", delay = 0) => ({
 
 export default function HowItWorks() {
     return (
-        <div className="container mx-auto flex flex-col items-center justify-center gap-8 py-10 px-4 overflow-hidden">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-8 py-10 px-4">
             {/* Image from top */}
             <motion.img
-                src="/assets/Frame 1707479767.png"
+                src="/assets/Liberation.svg"
                 alt="img"
-                className="w-full max-w-[678px]"
+                className="max-w-[358px]"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -40,7 +40,7 @@ export default function HowItWorks() {
 
 
             {/* Articles - Responsive Grid */}
-            <div className="flex  flex-col lg:flex-row gap-12 lg:gap-8 relative w-full justify-center">
+            <div className="flex  flex-col lg:flex-row gap-12 lg:gap-8 relative w-full items-center justify-center">
                 {/* Arrow with smooth opacity */}
                 <motion.img
                     src="/assets/arrows.svg"

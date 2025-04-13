@@ -47,7 +47,7 @@ const Footer = () => {
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        className="w-full lg:w-[40%] h-[200px] sm:h-[265px]"
+                        className="w-full lg:w-[40%] h-auto sm:h-[265px]"
                     >
                         <img
                             src="/assets/Frame 1707479715.png"
@@ -62,7 +62,7 @@ const Footer = () => {
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        className="w-full lg:w-[60%] bg-[#EDEDED] p-6 sm:p-10 rounded-[24px] flex flex-col items-center sm:flex-row justify-between gap-6"
+                        className="w-full lg:w-[60%] bg-[#EDEDED] p-6 sm:p-10 rounded-[24px] flex items-center flex-row flex-wrap justify-between gap-6 whitespace-nowrap"
                     >
                         <div className="flex flex-col gap-4">
                             <p className="font-bold">Legal</p>

@@ -7,6 +7,7 @@ import HowItWorks from "./components/HowItWorks";
 import Benefit from "./components/Benefit";
 import TestimonialsSection from "./components/Testimonial";
 import Footer from "./components/Footer";
+import Pricing from "./components/Pricing";
 
 
 export default function Home() {
@@ -36,7 +37,7 @@ export default function Home() {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.5 }}
-          className="text-[16px] font-medium text-[#333333]">
+          className="text-[16px] font-medium text-center text-[#333333]">
           See how bad manual citations can be... and how Tweakrr makes them disappear forever.
         </motion.p>
       </div>
@@ -63,6 +64,7 @@ export default function Home() {
       <HowItWorks />
       <Benefit />
       <TestimonialsSection />
+      <Pricing />
       <FAQs />
       <Footer />
     </div>

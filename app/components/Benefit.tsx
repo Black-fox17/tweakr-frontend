@@ -3,7 +3,7 @@ import React from 'react'
 const Benefit = () => {
     return (
         <div className='flex items-center justify-center'>
-            <div className="pt-10 pb-[7rem] px-4 flex flex-col sm:flex-row items-start justify-center sm:justify-between gap-12">
+            <div className="pt-10 pb-[7rem] px-4 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between gap-12">
                 <div className="flex flex-col gap-4 max-w-[400px]">
                     <h1 className="text-[32px] sm:text-[40px] font-medium">Benefits</h1>
                     <p className="text-[16px] sm:text-[18px] text-[#333333]">Why Students & Researchers Are Saying "Thank Goodness"</p>

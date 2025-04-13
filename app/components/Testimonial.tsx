@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 const TestimonialsSection = () => {
     return (
         <div className="flex items-center justify-center">
-            <div className="py-10 items-center justify-center flex px-8 flex-col gap-10 relative">
+            <div className="py-10 items-center justify-center flex px-4 sm:px-8 flex-col gap-10 relative">
                 {/* Heading + Subtext */}
                 <motion.div
                     initial={{ opacity: 0, y: -50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="flex flex-col gap-4 items-center "
+                    className="flex flex-col gap-2 items-center justify-center text-center "
                 >
-                    <h1 className="text-[28px] sm:text-[36px] md:text-[40px] font-semibold">
+                    <h1 className="text-4xl font-bold">
                         Testimonials
                     </h1>
-                    <p className="text-[#333333] text-[16px] sm:text-[18px]">
+                    <p className="text-lg text-gray-600">
                         From Citation Sufferers to Tweakrr Believers
                     </p>
                 </motion.div>
@@ -24,7 +24,7 @@ const TestimonialsSection = () => {
                 <motion.img
                     src="/assets/Giving a five star rating.svg"
                     alt="rating"
-                    className="absolute left-[-3rem] top-[-4rem]"
+                    className="hidden lg:block absolute left-[-3rem] top-[-4rem]"
                     initial={{ opacity: 0, y: -60 }}
                     whileInView={{ opacity: 1, y: 60 }}
                     transition={{ duration: 0.8 }}
@@ -34,7 +34,7 @@ const TestimonialsSection = () => {
                 <motion.img
                     src="/assets/document.svg"
                     alt="document"
-                    className="absolute right-0 bottom-[-3rem]"
+                    className="hidden lg:block absolute right-0 bottom-[-3rem]"
                     initial={{ opacity: 0, x: 80 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -43,7 +43,7 @@ const TestimonialsSection = () => {
 
                 {/* Testimonial Box */}
                 <motion.div
-                    className="flex flex-col gap-4 bg-[#EDEDEDCC]/80 rounded-[16px] p-4 sm:p-9 max-w-[90%] sm:max-w-[700px] lg:max-w-[1280px] z-50"
+                    className="flex flex-col gap-4 bg-[#EDEDEDCC]/80 rounded-[16px] py-8 p-4 sm:p-9 max-w-full sm:max-w-[700px] lg:max-w-[1280px] z-50"
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.3 }}

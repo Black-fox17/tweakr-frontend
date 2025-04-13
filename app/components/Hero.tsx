@@ -23,7 +23,7 @@ const Hero = () => {
                             <p>3,500+ Pro Users</p>
                         </div>
                         <div>
-                            <h1 className="text-[26px] sm:text-[48px] md:text-[64px] font-semibold text-center ">One Upload. One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
+                            <h1 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold text-center ">One Upload. <br className='block sm:hidden' /> One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
                         </div>
                     </div>
                 </motion.div>
@@ -35,7 +35,7 @@ const Hero = () => {
                     viewport={{ once: true, amount: 0.5 }}
                 >
                     <div className='flex flex-col items-center justify-center gap-8 pb-12'>
-                        <p className="ext-[16px] sm:text-[18px] text-center max-w-[901px]">Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
+                        <p className="text-[16px] sm:text-[18px] text-center max-w-[901px]">Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
                         <button className=' bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
                             Cite It Right
                         </button>
