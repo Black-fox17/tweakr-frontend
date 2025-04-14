@@ -33,7 +33,7 @@ const FAQs = () => {
                 className='sm:max-w-[400px] w-full flex flex-col gap-4'
                 initial={{ opacity: 0, x: -50, y: -50 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
+                // viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
                 <h1 className='text-[40px] font-semibold'>FAQ</h1>
@@ -44,7 +44,7 @@ const FAQs = () => {
                 className="w-full flex flex-col gap-8 sm:w-[840px]"
                 initial={{ opacity: 0, x: 50, y: -50 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
+                // viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
                 {dommyfaqs.map((faq, index) => (

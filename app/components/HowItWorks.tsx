@@ -19,7 +19,7 @@ export default function HowItWorks() {
                 className="max-w-[358px]"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                // viewport={{ once: true }}
                 variants={fadeInFrom("top", 0.1)}
             />
 
@@ -28,7 +28,7 @@ export default function HowItWorks() {
                 className="px-4 text-center flex flex-col items-center gap-3"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                // viewport={{ once: true }}
                 variants={fadeInFrom("bottom", 0.3)}
             >
                 <h1 className="text-2xl sm:text-3xl md:text-[40px] font-semibold">How it Works?</h1>
@@ -49,7 +49,7 @@ export default function HowItWorks() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
-                    viewport={{ once: true }}
+                // viewport={{ once: true }}
                 />
                 {[...Array(3)].map((_, index) => (
                     <motion.article
@@ -57,7 +57,7 @@ export default function HowItWorks() {
                         className="max-w-[400px] flex flex-col"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true }}
+                        // viewport={{ once: true }}
                         variants={fadeInFrom("bottom", 0.5 + index * 0.3)}
                     >
                         <img

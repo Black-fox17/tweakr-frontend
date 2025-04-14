@@ -20,7 +20,7 @@ export default function Home() {
           initial={{ y: -40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.5 }}
+        // viewport={{ once: true, amount: 0.5 }}
         >
           When Citations Attack!
         </motion.p>
@@ -30,13 +30,13 @@ export default function Home() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.5 }}
+        // viewport={{ once: true, amount: 0.5 }}
         />
         <motion.p
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.5 }}
+          // viewport={{ once: true, amount: 0.5 }}
           className="text-[16px] font-medium text-center text-[#333333]">
           See how bad manual citations can be... and how Tweakrr makes them disappear forever.
         </motion.p>

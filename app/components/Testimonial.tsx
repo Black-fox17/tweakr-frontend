@@ -9,7 +9,7 @@ const TestimonialsSection = () => {
                     initial={{ opacity: 0, y: -50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
+                    // viewport={{ once: true }}
                     className="flex flex-col gap-2 items-center justify-center text-center "
                 >
                     <h1 className="text-4xl font-bold">
@@ -24,11 +24,11 @@ const TestimonialsSection = () => {
                 <motion.img
                     src="/assets/Giving a five star rating.svg"
                     alt="rating"
-                    className="hidden lg:block absolute left-[-3rem] top-[-4rem]"
+                    className="absolute right-[-10rem] sm:left-[-3rem] top-[5rem]"
                     initial={{ opacity: 0, y: -60 }}
                     whileInView={{ opacity: 1, y: 60 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                // viewport={{ once: true }}
                 />
 
                 <motion.img
@@ -38,7 +38,7 @@ const TestimonialsSection = () => {
                     initial={{ opacity: 0, x: 80 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
+                // viewport={{ once: true }}
                 />
 
                 {/* Testimonial Box */}
@@ -47,7 +47,7 @@ const TestimonialsSection = () => {
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    viewport={{ once: true }}
+                // viewport={{ once: true }}
                 >
                     <div className="p-8">
                         <img src="/assets/Heading.svg" alt="map" />

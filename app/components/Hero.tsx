@@ -14,16 +14,17 @@ const Hero = () => {
                     initial={{ opacity: 0, y: -50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    viewport={{ once: true, amount: 0.5 }}                >
+                // viewport={{ once: true, amount: 0.5 }}
+                >
                     <Navbar />
                     <div
-                        className='flex flex-col items-center justify-center max-w-[901px] text-center pt-12'>
+                        className='flex flex-col items-center gap-4 justify-center max-w-[901px] text-center pt-12'>
                         <div className='text-[#646464] flex items-center gap-2 bg-white rounded-full p-2 self-center'>
                             <img src="/assets/Images Container.png" alt="img" className='w-[56px] h-[26px]' />
                             <p>3,500+ Pro Users</p>
                         </div>
                         <div>
-                            <h1 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold text-center ">One Upload. <br className='block sm:hidden' /> One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
+                            <h1 className="relative self-stretch mt-[-1.00px] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[40px] md:text-[64px] text-center tracking-[0] leading-[1.2] ">One Upload. <br className='block sm:hidden' /> One Click. <br /> <span className='text-[#31DAC0]'>Perfect Citations.</span></h1>
                         </div>
                     </div>
                 </motion.div>
@@ -32,23 +33,23 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    viewport={{ once: true, amount: 0.5 }}
+                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <div className='flex flex-col items-center justify-center gap-8 pb-12'>
-                        <p className="text-[16px] sm:text-[18px] text-center max-w-[901px]">Effortlessly generate accurate in-text citations and reference lists with powered precision. No more manual searching, no more formatting errors just seamless academic writing.</p>
+                        <p className="relative self-stretch font-body-xlarge-medium font-[number:var(--body-xlarge-medium-font-weight)] text-foundation-whitewhite-500 text-[length:var(--body-xlarge-medium-font-size)] text-center tracking-[var(--body-xlarge-medium-letter-spacing)] leading-[var(--body-xlarge-medium-line-height)]w-full sm:max-w-[901px]">Tweakrr automatically handles your in-text citations and reference lists. You write the brilliance, we'll handle the boring bits.</p>
                         <button className=' bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
                             Cite It Right
                         </button>
                     </div>
                 </motion.div>
             </div>
-            <div className='flex relative'>
+            <div className='flex flex-col sm:flex-row relative'>
                 <motion.div
                     className="relative"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    viewport={{ once: true, amount: 0.5 }}
+                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <motion.img
                         initial={{ rotate: -10, opacity: 0, x: -50 }}
@@ -66,14 +67,14 @@ const Hero = () => {
                     initial={{ x: 100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    viewport={{ once: true, amount: 0.5 }}
+                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <img src="/assets/right stroke.svg" alt="stroke" className='absolute top-[-4.5rem] right-0' />
                     <motion.img
                         initial={{ rotate: 10, opacity: 0, x: 50 }}
                         whileInView={{ rotate: 0, opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.5 }}
+                        // viewport={{ once: true, amount: 0.5 }}
                         src="/assets/a relaxed student whose document magically gains perfect citations..png" alt=""
                         className="max-w-full sm:max-w-[280px] md:max-w-[526px]"
                     />

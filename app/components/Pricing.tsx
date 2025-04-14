@@ -1,5 +1,6 @@
 import { CheckCircle2Icon } from "lucide-react";
 import React from "react";
+import { motion } from "framer-motion";
 
 const pricingPlans = [
     {
@@ -44,22 +45,62 @@ const pricingPlans = [
     },
 ];
 
+const containerVariants = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    show: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: i * 0.3, // adjust the delay for ascending animation
+            duration: 0.6,
+            ease: "easeOut",
+        },
+    }),
+};
+
+
+const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
+};
+
+
 const Pricing = () => {
     return (
-        <section className="flex flex-col items-center justify-center gap-16 px-6 py-20 ">
+        <motion.section
+            className="flex flex-col items-center justify-center gap-16 px-6 py-20 "
+            initial="hidden"
+            whileInView="show"
+        >
             {/* Header */}
-            <div className="text-center max-w-3xl">
+            <motion.div
+                variants={headerVariants}
+                className="text-center max-w-3xl">
                 <h2 className="text-4xl font-bold text-gray-900">Pricing</h2>
                 <p className="text-lg text-gray-600 mt-2">
                     Pricing That Makes Cents <span className="font-mono">¢</span> (And Saves Dollars)
                 </p>
-            </div>
+            </motion.div>
 
             {/* Pricing Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-                {pricingPlans.map((plan) => (
-                    <div
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl"
+                variants={containerVariants}
+            >
+                {pricingPlans.map((plan, i) => (
+                    <motion.div
+                        custom={i} // 🔑 index for animation order
                         key={plan.type}
+                        variants={cardVariants}
                         className={`rounded-3xl overflow-hidden shadow-lg border ${plan.isPopular ? "bg-[#155C51] text-white" : "bg-white text-gray-900 border-gray-200"
                             } flex flex-col justify-between`}
                     >
@@ -95,10 +136,10 @@ const Pricing = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
-        </section>
+            </motion.div>
+        </motion.section>
     );
 };
 

@@ -11,7 +11,7 @@ const Footer = () => {
                         initial={{ x: -100, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.6 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        // viewport={{ once: true, amount: 0.3 }}
                         className="text-[32px] sm:text-[40px] md:text-[60px] font-semibold md:w-[55%] text-center md:text-left"
                     >
                         Start Your Hassle-Free Referencing Now!
@@ -22,7 +22,7 @@ const Footer = () => {
                             initial={{ y: -100, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6 }}
-                            viewport={{ once: true, amount: 0.3 }}
+                            // viewport={{ once: true, amount: 0.3 }}
                             className="text-[16px] sm:text-[18px] text-center px-4 md:px-0"
                         >
                             Avoid citation errors and formatting struggles—let Tweakrr handle your references in one click.
@@ -31,7 +31,7 @@ const Footer = () => {
                             initial={{ y: 100, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true, amount: 0.3 }}
+                            // viewport={{ once: true, amount: 0.3 }}
                             className="bg-[#31DAC0] text-center rounded-full py-3 px-5 text-[16px] sm:text-[17px] font-semibold text-white w-fit"
                         >
                             Reference Your Document Today
@@ -46,7 +46,7 @@ const Footer = () => {
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        // viewport={{ once: true, amount: 0.3 }}
                         className="w-full lg:w-[40%] h-auto sm:h-[265px]"
                     >
                         <img
@@ -61,7 +61,7 @@ const Footer = () => {
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        // viewport={{ once: true, amount: 0.3 }}
                         className="w-full lg:w-[60%] bg-[#EDEDED] p-6 sm:p-10 rounded-[24px] flex items-center flex-row flex-wrap justify-between gap-6 whitespace-nowrap"
                     >
                         <div className="flex flex-col gap-4">
