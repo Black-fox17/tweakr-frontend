@@ -78,12 +78,15 @@ const Pricing = () => {
     return (
         <motion.section
             className="flex flex-col items-center justify-center gap-16 px-6 py-20 "
-            initial="hidden"
-            whileInView="show"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
         >
             {/* Header */}
             <motion.div
-                variants={headerVariants}
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="text-center max-w-3xl">
                 <h2 className="text-4xl font-bold text-gray-900">Pricing</h2>
                 <p className="text-lg text-gray-600 mt-2">
@@ -98,9 +101,9 @@ const Pricing = () => {
             >
                 {pricingPlans.map((plan, i) => (
                     <motion.div
-                        custom={i} // 🔑 index for animation order
-                        key={plan.type}
-                        variants={cardVariants}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.3, duration: 0.6, ease: "easeOut" }}
                         className={`rounded-3xl overflow-hidden shadow-lg border ${plan.isPopular ? "bg-[#155C51] text-white" : "bg-white text-gray-900 border-gray-200"
                             } flex flex-col justify-between`}
                     >

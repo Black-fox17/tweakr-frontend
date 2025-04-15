@@ -63,7 +63,7 @@ const Hero = () => {
                     <img src="/assets/left-stroke.svg" alt="stroke" className='absolute top-[-4.5rem] left-0' />
                 </motion.div>
                 <motion.div
-                    className="relative"
+                    className="relative mt-[3rem] sm:mt-0"
                     initial={{ x: 100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
