@@ -41,7 +41,7 @@ const benefits = [
 const Benefit = () => {
     return (
         <div className='flex items-center justify-center'>
-            <div className="pt-10 pb-[7rem] px-4 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between gap-12">
+            <div className="pt-10 pb-[7rem] px-4 flex flex-col md:flex-row items-center sm:items-start justify-center sm:justify-between gap-12">
                 <motion.div
                     initial={{ opacity: 0, x: -50, y: -50 }}
                     whileInView={{ opacity: 1, x: 0, y: 0 }}

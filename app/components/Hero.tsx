@@ -3,6 +3,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const Hero = () => {
     return (
@@ -14,7 +15,6 @@ const Hero = () => {
                     initial={{ opacity: 0, y: -50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <Navbar />
                     <div
@@ -33,12 +33,13 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <div className='flex flex-col items-center justify-center gap-8 pb-12'>
                         <p className="relative self-stretch font-body-xlarge-medium font-[number:var(--body-xlarge-medium-font-weight)] text-foundation-whitewhite-500 text-[length:var(--body-xlarge-medium-font-size)] text-center tracking-[var(--body-xlarge-medium-letter-spacing)] leading-[var(--body-xlarge-medium-line-height)]w-full sm:max-w-[901px]">Tweakrr automatically handles your in-text citations and reference lists. You write the brilliance, we'll handle the boring bits.</p>
                         <button className=' bg-[#31DAC0] rounded-full text-[#010F34] py-[14px] px-[20px] font-semibold'>
-                            Cite It Right
+                            <Link href="/dashboard">
+                                Cite It Right
+                            </Link>
                         </button>
                     </div>
                 </motion.div>
@@ -49,7 +50,6 @@ const Hero = () => {
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <motion.img
                         initial={{ rotate: -10, opacity: 0, x: -50 }}
@@ -67,14 +67,12 @@ const Hero = () => {
                     initial={{ x: 100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                // viewport={{ once: true, amount: 0.5 }}
                 >
                     <img src="/assets/right stroke.svg" alt="stroke" className='absolute top-[-4.5rem] right-0' />
                     <motion.img
                         initial={{ rotate: 10, opacity: 0, x: 50 }}
                         whileInView={{ rotate: 0, opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        // viewport={{ once: true, amount: 0.5 }}
                         src="/assets/a relaxed student whose document magically gains perfect citations..png" alt=""
                         className="max-w-full sm:max-w-[280px] md:max-w-[526px]"
                     />

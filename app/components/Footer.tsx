@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -32,9 +33,10 @@ const Footer = () => {
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             // viewport={{ once: true, amount: 0.3 }}
-                            className="bg-[#31DAC0] text-center rounded-full py-3 px-5 text-[16px] sm:text-[17px] font-semibold text-white w-fit"
+                            className="bg-[#31DAC0] text-center flex gap-2 rounded-full py-3 px-5 text-[16px] sm:text-[17px] font-semibold text-white w-fit"
                         >
                             Reference Your Document Today
+                            <ArrowRight />
                         </motion.button>
                     </div>
                 </div>
@@ -52,7 +54,7 @@ const Footer = () => {
                         <img
                             src="/assets/Frame 1707479715.png"
                             alt="tweakrr"
-                            className="w-full h-full rounded-xl object-cover"
+                            className="w-full h-full rounded-xl object-fit"
                         />
                     </motion.div>
 
