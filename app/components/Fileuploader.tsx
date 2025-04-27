@@ -4,26 +4,29 @@ import { useDropzone } from 'react-dropzone'
 
 type FileUploaderProps = {
     files: File[] | undefined,
-    onChange: (files: File[]) => void
+    onChange: (files: File[]) => void,
+    isPending?: boolean
 }
 
-export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
-const FileUploader = ({ files, onChange }: FileUploaderProps) => {
+
+const FileUploader = ({ files, onChange, isPending }: FileUploaderProps) => {
     const onDrop = useCallback((acceptedFiles: File[]) => {
         // Do something with the files
         onChange(acceptedFiles)
     }, [onChange])
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
+
+
     return (
         <div {...getRootProps()} className='file-upload'>
             <input {...getInputProps()} />
-            {files && files?.length > 0 ? (
+            {files && files?.length > 0 || isPending ? (
                 <div className='flex flex-col items-center justify-center w-[798px] gap-8'>
                     <h3 className='font-semibold text-[24px]'>Let's Transform Your Document</h3>
-                    <div className='bg-[#FDFDFD] border rounded-3xl items-center border-[#D8D8D8] flex flex-col p-12 gap-6 '>
-                        <img src="/gif/Docs animation gif.gif" alt="aniamtion" className='' />
+                    <div className='bg-[#FDFDFD] border rounded-3xl items-center border-[#D8D8D8] flex justify-center p-12 gap-6 lg:w-[508px] lg:h-[309px]'>
+                        <img src="/gif/Docs animation gif.gif" alt="aniamtion" className=' object-contain' />
                     </div>
                 </div>
             ) : (

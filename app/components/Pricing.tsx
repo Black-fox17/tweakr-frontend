@@ -101,6 +101,7 @@ const Pricing = () => {
             >
                 {pricingPlans.map((plan, i) => (
                     <motion.div
+                        key={i}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.3, duration: 0.6, ease: "easeOut" }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
     return (
@@ -32,11 +33,13 @@ const Footer = () => {
                             initial={{ y: 100, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            // viewport={{ once: true, amount: 0.3 }}
-                            className="bg-[#31DAC0] text-center flex gap-2 rounded-full py-3 px-5 text-[16px] sm:text-[17px] font-semibold text-white w-fit"
+                        // viewport={{ once: true, amount: 0.3 }}
                         >
-                            Reference Your Document Today
-                            <ArrowRight />
+                            <Link href="/dashboard" className="bg-[#31DAC0] text-center flex gap-2 rounded-full py-3 px-5 text-[16px] sm:text-[17px] font-semibold text-white w-fit"
+                            >
+                                Reference Your Document Today
+                                <ArrowRight />
+                            </Link>
                         </motion.button>
                     </div>
                 </div>
@@ -93,7 +96,7 @@ const Footer = () => {
                     </motion.div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

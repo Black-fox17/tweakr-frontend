@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FileUploader from '../components/Fileuploader'
 import CitattionCustomizationStation from '../components/CitattionCustomizationStation'
 import {
@@ -16,6 +16,10 @@ import CitationReferencesBox from '../components/CitationReferencesBox'
 import CitationIsReadyModal from '../components/CitationIsReadyModal'
 import CreateAccountModal from '../components/CreateAccountModal'
 import CitationPerfectionAchieve from '../components/CitationPerfectionAchieve'
+import { getCitationSuggestions, processPaper, extractContent } from '@/service/citationService'
+import { useQuery, useMutation } from '@tanstack/react-query'
+import { Skeleton } from '@/components/ui/skeleton'
+import CostBreakDown from '../components/CostBreakDown'
 
 const Page = () => {
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
@@ -23,8 +27,94 @@ const Page = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [isCitationReady, setIsCitationReady] = useState(false)
     const [isRegisterReady, setIsRegisterReady] = useState(false)
-    const [isCitationPerfectionAchieved, setIsCitationPerfectionAchievd] = useState(true)
+    const [isCitationPerfectionAchieved, setIsCitationPerfectionAchievd] = useState(false)
     const [activeTab, setActiveTab] = useState<'suggestions' | 'settings' | 'references'>('suggestions')
+    const [isUploading, setIsUploading] = useState(false);
+
+    const [selectedStyleGuide, setSelectedStyleGuide] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [citationIntensity, setCitationIntensity] = useState('');
+
+    const formData = new FormData();
+    if (uploadedFiles.length > 0) {
+        formData.append('file', uploadedFiles[0]);
+    }
+
+
+    const createFormDataForProcessPaper = () => {
+        const formData = new FormData();
+        if (uploadedFiles.length > 0) {
+            formData.append('file', uploadedFiles[0]);
+        }
+        formData.append('style', selectedStyleGuide);
+        formData.append('category', selectedCategory);
+        return formData;
+    };
+
+    const createFormDataForGetCitationSuggestions = () => {
+        const formData = new FormData();
+        if (uploadedFiles.length > 0) {
+            formData.append('input_file', uploadedFiles[0]);
+        }
+        return formData;
+    };
+
+
+    const { mutate: runProcessPaper, isPending } = useMutation({
+        mutationFn: async () => {
+            const formData = createFormDataForProcessPaper();
+
+            return processPaper(formData);
+        },
+        onSuccess: () => {
+            console.log('Processing success 🎉');
+            setIsCitationReady(true);
+        },
+        onError: (error) => {
+            console.error('Processing failed 😢', error);
+        }
+    });
+
+
+    const { data, refetch, isFetching, error } = useQuery({
+        queryKey: ['getCitationSuggestions'],
+        queryFn: async () => {
+            const formData = createFormDataForGetCitationSuggestions();
+            return getCitationSuggestions(formData);
+        },
+        enabled: false,
+    });
+
+    if (error) {
+        console.error('Failed to get suggestions:', error);
+    }
+
+    const handleWorkMagic = () => {
+        if (!uploadedFiles[0]) return;
+        refetch();
+        runProcessPaper();
+        setActiveTab("suggestions");
+    };
+
+
+    const { data: extract, isSuccess } = useQuery({
+        queryKey: ['extract-content', uploadedFiles[0]],
+        queryFn: () => extractContent(formData),
+        enabled: uploadedFiles.length > 0,
+        refetchOnWindowFocus: false,
+    });
+
+    useEffect(() => {
+        if (uploadedFiles.length > 0) {
+            setIsUploading(true);
+        }
+    }, [uploadedFiles]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            setIsUploading(false);
+        }
+    }, [isSuccess, extract]);
 
 
     return (
@@ -32,7 +122,7 @@ const Page = () => {
             {isCitationReady && <CitationIsReadyModal />}
             {isRegisterReady && <CreateAccountModal />}
             {isCitationPerfectionAchieved && <CitationPerfectionAchieve />}
-            <div className="relative w-full h-screen flex overflow-hidden bg-white transition-all duration-500">
+            <div className="relative w-full h-screen flex bg-white transition-all duration-500">
                 {/* Main Content Section (Navbar + Page Body) */}
                 <div
                     className={`flex flex-col flex-1 transition-all duration-500 ${showAssistant && isSidebarOpen ? 'w-[70%]' : 'w-full'
@@ -77,22 +167,43 @@ const Page = () => {
                     </nav>
 
                     {/* Body Content */}
-                    <div className="flex-1 flex items-center justify-center px-12">
-                        {/* {showAssistant && ( */}
-                        <FileUploader files={uploadedFiles} onChange={setUploadedFiles} />
-                        {/* )} */}
+                    <div className="flex-1 flex flex-col overflow-y-auto px-12 py-6">
+                        {!isSuccess && !isFetching ? (
+                            <FileUploader
+                                files={uploadedFiles}
+                                onChange={(files) => setUploadedFiles(files)}
+                                isPending={isUploading}
+                            />
+                        ) : isFetching ? (
+                            <div className="space-y-4 ">
+                                {/* multiple skeleton lines */}
+                                {Array.from({ length: 40 }).map((_, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-full h-[22px] bg-[#D9D9D9] rounded animate-pulse"
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="py-4 overflow-y-scroll w-full">
+                                <p className="text-[#545454] whitespace-pre-wrap">
+                                    {extract?.data?.content ?? 'No content found'}
+                                </p>
+                            </div>
+                        )}
                     </div>
+
                 </div>
 
                 {/* Sidebar */}
                 {showAssistant && (
                     <div
-                        className={`transform transition-transform duration-500 ease-in-out ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} bg-[#FDFDFD] border-l border-[#EDEDED] h-full overflow-hidden`}
+                        className={`transform transition-transform duration-500 ease-in-out ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} bg-[#FDFDFD] border-l border-[#EDEDED] h-full overflow-hidden w-full lg:w-[30%] fixed lg:static top-0 right-0 z-50`}
                     >
                         {/* Important: no fixed width inside! Let it be full */}
                         <div className="w-full h-full flex flex-col">
                             {/* Sidebar Navbar */}
-                            <nav className="p-4 bg-white flex items-center justify-between border-b border-b-[#EDEDED]">
+                            <nav className="p-4 bg-white flex items-center justify-between border-b border-b-[#EDEDED] overflow-x-scroll">
                                 <button
                                     className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex items-center gap-2 rounded-[8px] justify-start px-4 py-2`}
                                     onClick={() => setActiveTab('suggestions')}
@@ -118,13 +229,25 @@ const Page = () => {
 
                             {/* Sidebar Content */}
                             <div className="p-4 overflow-y-auto flex-1">
-                                {activeTab === 'suggestions' && <CitationSuggestionBox />}
-                                {activeTab === 'settings' && <CitattionCustomizationStation />}
+                                {activeTab === 'suggestions' && <CitationSuggestionBox suggestions={data?.data.citations} />}
+                                {activeTab === 'settings' &&
+                                    <CitattionCustomizationStation
+                                        selectedStyleGuide={selectedStyleGuide}
+                                        setSelectedStyleGuide={setSelectedStyleGuide}
+                                        selectedCategory={selectedCategory}
+                                        setSelectedCategory={setSelectedCategory}
+                                        citationIntensity={citationIntensity}
+                                        setCitationIntensity={setCitationIntensity}
+                                        onWorkMagic={handleWorkMagic}
+                                    />}
                                 {activeTab === 'references' && <CitationReferencesBox />}
                             </div>
                         </div>
                     </div>
                 )}
+
+                <CostBreakDown />
+
             </div>
         </>
     )

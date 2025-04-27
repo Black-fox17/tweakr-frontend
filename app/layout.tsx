@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import { GlobalProvider } from "@/context/GlobalContext";
-
+import QueryProvider from "./QueryProvider"; // ⬅️ We'll create this next
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -17,17 +16,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${lexend.variable} antialiased`}
-      >
-        <GlobalProvider>
+      <body className={`${lexend.variable} antialiased`}>
+        <QueryProvider>
           {children}
-        </GlobalProvider>
+        </QueryProvider>
       </body>
     </html>
   );

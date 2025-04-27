@@ -1,5 +1,8 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
+import { getCategories } from '@/service/citationService';
+
 import React from 'react';
 import {
     Select,
@@ -10,7 +13,33 @@ import {
     SelectValue
 } from '@/components/ui/select';
 
-const CitationCustomizationStation = () => {
+
+interface Props {
+    selectedStyleGuide: string;
+    setSelectedStyleGuide: (value: string) => void;
+    selectedCategory: string;
+    setSelectedCategory: (value: string) => void;
+    citationIntensity: string;
+    setCitationIntensity: (value: string) => void;
+    onWorkMagic: () => void;
+}
+
+const CitationCustomizationStation = ({
+    selectedStyleGuide,
+    setSelectedStyleGuide,
+    selectedCategory,
+    setSelectedCategory,
+    citationIntensity,
+    setCitationIntensity,
+    onWorkMagic,
+}: Props) => {
+
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: getCategories,
+    });
+
+
     return (
         <div className="p-6 w-full flex flex-col gap-[26px] max-w-3xl mx-auto">
             <h3 className="text-[#010F34] text-[24px] font-semibold">Citation Customization Station</h3>
@@ -19,16 +48,15 @@ const CitationCustomizationStation = () => {
             {/* Style Guide */}
             <div className="flex flex-col gap-2">
                 <label className="text-[18px] font-semibold text-[#212121]">Which Style Guide Is Bossing You Around?</label>
-                <Select>
+                <Select value={selectedStyleGuide} onValueChange={(value) => setSelectedStyleGuide(value)}>
                     <SelectTrigger className="border-[#FAFAFA] p-4 rounded-[10px] text-[#9E9E9E] text-[18px]">
                         <SelectValue placeholder="Choose style guide..." />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectItem value="apa">APA</SelectItem>
-                            <SelectItem value="mla">MLA</SelectItem>
-                            <SelectItem value="chicago">Chicago</SelectItem>
-                            <SelectItem value="harvard">Harvard</SelectItem>
+                            {["APA", "MLA", "Chicago"].map((value) => (
+                                <SelectItem key={value} value={value}>{value}</SelectItem>
+                            ))}
                         </SelectGroup>
                     </SelectContent>
                 </Select>
@@ -36,16 +64,22 @@ const CitationCustomizationStation = () => {
 
             {/* Timeframe */}
             <div className="flex flex-col gap-2">
-                <label className="text-[18px] font-semibold text-[#212121]">Source Publication Timeframe</label>
-                <Select>
+                <label className="text-[18px] font-semibold text-[#212121]">Category</label>
+                <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value)}>
                     <SelectTrigger className="border-[#FAFAFA] p-4 rounded-[10px] text-[#9E9E9E] text-[18px]">
-                        <SelectValue placeholder="Choose timeframe..." />
+                        <SelectValue placeholder="Choose category..." />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectItem value="5-years">Last 5 years</SelectItem>
-                            <SelectItem value="10-years">Last 10 years</SelectItem>
-                            <SelectItem value="any">Any Time</SelectItem>
+                            {isLoading ? (
+                                <div className="p-4 text-center text-gray-400">Loading...</div>
+                            ) : (
+                                categories?.data?.categories?.map((category: any) => (
+                                    <SelectItem key={category} value={category} >
+                                        {category}
+                                    </SelectItem>
+                                ))
+                            )}
                         </SelectGroup>
                     </SelectContent>
                 </Select>
@@ -56,15 +90,18 @@ const CitationCustomizationStation = () => {
                 <label className="text-[18px] font-semibold text-[#212121]">How Citation-Happy Should We Be?</label>
                 <div className="flex flex-col gap-2">
                     <label className="flex items-center gap-2 text-[#9E9E9E] text-[16px]">
-                        <input type="radio" name="citation-intensity" value="essentials" />
+                        <input type="radio" name="citation-intensity" value="essentials" onChange={(e) => setCitationIntensity(e.target.value)}
+                        />
                         Just the Essentials (when less is more)
                     </label>
                     <label className="flex items-center gap-2 text-[#9E9E9E] text-[16px]">
-                        <input type="radio" name="citation-intensity" value="balanced" />
+                        <input type="radio" name="citation-intensity" value="balanced" onChange={(e) => setCitationIntensity(e.target.value)}
+                        />
                         Balanced Approach (recommended for most papers)
                     </label>
                     <label className="flex items-center gap-2 text-[#9E9E9E] text-[16px]">
-                        <input type="radio" name="citation-intensity" value="everything" />
+                        <input type="radio" name="citation-intensity" value="everything" onChange={(e) => setCitationIntensity(e.target.value)}
+                        />
                         Cite Everything (for when your grade depends on it)
                     </label>
                 </div>
@@ -79,7 +116,9 @@ const CitationCustomizationStation = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="bg-[#31DAC0] rounded-full py-[14px] px-[20px] font-semibold self-start w-full">
+            <button
+                onClick={onWorkMagic}
+                className="bg-[#31DAC0] rounded-full py-[14px] px-[20px] font-semibold self-start w-full">
                 Work Your Citation Magic
             </button>
         </div>
