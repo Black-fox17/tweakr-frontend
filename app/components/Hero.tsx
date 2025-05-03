@@ -9,10 +9,16 @@ import CreateAccountModal from './CreateAccountModal'
 
 const Hero = () => {
     const [isRegisterReady, setIsRegisterReady] = useState(false)
+    const [isPayment, setIsPayment] = useState(false)
 
     return (
         <>
-            {isRegisterReady && <CreateAccountModal />}
+            {isRegisterReady && (
+                <CreateAccountModal
+                    setIsRegisterReady={setIsRegisterReady}
+                    setIsPayment={setIsPayment}
+                />
+            )}
             <div className='bg-[#010F34] border-b border-b-[#DEE5ED] rounded-b-[50px] p-4 sm:p-8 text-white flex flex-col items-center justify-center shadow-xl relative'>
                 <img src="/assets/Lights.png" alt="light" className='absolute top-0 left-0' />
                 <img src="/assets/Lights (2).png" alt="light" className='absolute top-0 right-0' />
