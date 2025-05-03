@@ -654,15 +654,16 @@ const citation = {
 
 type CitationSuggestionBoxProps = {
     suggestions: string[] | undefined;
+    referenceSuggestion: string
 };
 
 
-const CitationSuggestionBox: React.FC<CitationSuggestionBoxProps> = ({ suggestions }) => {
+const CitationSuggestionBox: React.FC<CitationSuggestionBoxProps> = ({ suggestions, referenceSuggestion }) => {
 
     return (
-        <div className="flex items-center justify-center w-full h-full flex-col mb-[13rem] sm:mb-0 ">
+        <div className="p-0 sm:p-6 w-full h-full flex flex-col gap-[26px] max-w-3xl mx-auto mb-[14rem] sm:mb-0">
             {suggestions && suggestions.length > 0 ? (
-                <div className="w-full">
+                <div className="w-full flex flex-col gap-4 p-4 sm:p-0">
                     {citation.citations.map((suggestion: any, index: any) => (
                         <div key={index} className="p-2 sm:p-4 border-b text-[#545454] flex flex-col items-start gap-4">
                             <p className='text-[20px] truncate max-w-full'><s>{suggestion?.original_sentence}</s></p>
@@ -694,7 +695,7 @@ const CitationSuggestionBox: React.FC<CitationSuggestionBoxProps> = ({ suggestio
 
                 </div>
             ) : (
-                <div className="flex flex-col gap-2 items-center justify-center">
+                <div className='flex flex-col gap-2 items-center justify-center h-full'>
                     <img src="/assets/home-trend-down.svg" alt="home-icon" />
                     <h3 className="text-[20px] font-semibold text-[#010F34]">Let’s get to work</h3>
                     <p className="text-[#010F34] text-[14px] font-medium">Suggestions will appear here</p>

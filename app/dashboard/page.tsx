@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import FileUploader from '../components/Fileuploader'
 import CitattionCustomizationStation from '../components/CitattionCustomizationStation'
 import {
@@ -29,9 +29,10 @@ const Page = () => {
     const [isCitationReady, setIsCitationReady] = useState(false)
     const [isRegisterReady, setIsRegisterReady] = useState(false)
     const [isCitationPerfectionAchieved, setIsCitationPerfectionAchievd] = useState(false)
-    const [isPayment, setIsPayment] = useState(false)
+    const [isPayment, setIsPayment] = useState(true)
     const [activeTab, setActiveTab] = useState<'suggestions' | 'settings' | 'references'>('suggestions')
     const [isUploading, setIsUploading] = useState(false);
+    const [wordCount, setWordCount] = useState(0);
 
     const [selectedStyleGuide, setSelectedStyleGuide] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -107,6 +108,22 @@ const Page = () => {
     });
 
     useEffect(() => {
+        if (isSuccess && extract) {
+            const text = typeof extract === "string" ? extract : JSON.stringify(extract);
+            const words = text.trim().split(/\s+/);
+            setWordCount(words.length);
+        }
+    }, [isSuccess, extract]);
+
+    const getReferenceCount = (wordCount: number): string => {
+        if (wordCount <= 1000) return "10 references";
+        if (wordCount <= 3000) return "25 references";
+        if (wordCount <= 6000) return "30-40 references";
+        if (wordCount <= 9000) return "50 references";
+        return "80 references";
+    };
+
+    useEffect(() => {
         if (uploadedFiles.length > 0) {
             setIsUploading(true);
         }
@@ -129,9 +146,7 @@ const Page = () => {
         }
     }, [isCitationReady]);
 
-
-    const allCitations = data?.data.citations.flat()
-    console.log(data)
+    const referenceSuggestion = useMemo(() => getReferenceCount(wordCount), [wordCount]);
 
     return (
         <>
@@ -158,8 +173,8 @@ const Page = () => {
                             <button
                                 className='p-2.5 border-[1.75px] shadow-sm border-[#616161] rounded-full  items-center'
                                 onClick={() => {
-                                    setShowAssistant(true)
-                                    setIsSidebarOpen(true)
+                                    setIsSidebarOpen((prev) => !prev)
+                                    setShowAssistant((prev) => !prev)
                                 }}
                             >
                                 <ArrowDown className='w-4 h-4' />
@@ -169,8 +184,8 @@ const Page = () => {
                             <button
                                 className="hidden sm:flex bg-[#31DAC0] rounded-full text-white py-[14px] px-[20px] font-medium"
                                 onClick={() => {
-                                    setShowAssistant(true)
-                                    setIsSidebarOpen(true)
+                                    setIsSidebarOpen((prev) => !prev)
+                                    setShowAssistant((prev) => !prev)
                                 }}
                             >
                                 Check Assistants
@@ -228,7 +243,7 @@ const Page = () => {
                         className={`transform transition-transform duration-500 ease-in-out ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}  bg-[#FDFDFD] border-l border-[#EDEDED] h-full overflow-hidden w-full lg:w-[38%] fixed lg:static top-0 right-0 z-0 sm:z-30 mt-[8rem] sm:mt-0`}
                     >
                         <div className="w-full h-full flex flex-col">
-                            <nav className="p-4 bg-white hidden sm:flex items-center justify-between border-b border-b-[#EDEDED] overflow-x-scroll">
+                            <nav className="p-4 bg-white hidden lg:flex items-center justify-between border-b border-b-[#EDEDED] overflow-x-scroll">
                                 <button
                                     className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex items-center gap-2 rounded-[8px] justify-start px-4 py-2`}
                                     onClick={() => setActiveTab('suggestions')}
@@ -253,8 +268,8 @@ const Page = () => {
                             </nav>
 
                             <div className="overflow-y-auto flex-1">
-                                {activeTab === 'suggestions' || !isPayment && <CitationSuggestionBox suggestions={data?.data.citations} />}
-                                {activeTab === 'settings' || !isPayment &&
+                                {activeTab === 'suggestions' && !isPayment && <CitationSuggestionBox suggestions={data?.data.citations} referenceSuggestion={referenceSuggestion} />}
+                                {activeTab === 'settings' && !isPayment &&
                                     <CitattionCustomizationStation
                                         selectedStyleGuide={selectedStyleGuide}
                                         setSelectedStyleGuide={setSelectedStyleGuide}
@@ -264,15 +279,15 @@ const Page = () => {
                                         setCitationIntensity={setCitationIntensity}
                                         onWorkMagic={handleWorkMagic}
                                     />}
-                                {activeTab === 'references' || !isPayment && <CitationReferencesBox />}
                                 {isPayment && <CostBreakDown />}
+                                {activeTab === 'references' && !isPayment && <CitationReferencesBox />}
                             </div>
                         </div>
                     </div>
                 )}
 
                 {showAssistant && (
-                    <nav className="sm:hidden py-2 px-4 fixed bottom-0 left-0 z-50 bg-white flex items-center justify-between border-b border-b-[#EDEDED] w-full">
+                    <nav className="lg:hidden py-2 px-4 fixed bottom-0 left-0 z-50 bg-white flex items-center justify-between border-b border-b-[#EDEDED] w-full">
                         <button
                             className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex flex-col items-center gap-2 rounded-[8px] justify-start px-4 py-2 text-[14px]`}
                             onClick={() => setActiveTab('suggestions')}
@@ -295,6 +310,7 @@ const Page = () => {
                             References
                         </button>
                     </nav>)}
+
             </div >
         </>
     )
