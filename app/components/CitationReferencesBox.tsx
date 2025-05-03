@@ -2,7 +2,7 @@ import React from 'react'
 
 const CitationReferencesBox = () => {
     return (
-        <div className='flex items-center justify-center w-full h-full'>
+        <div className='flex items-center justify-center w-full h-full mb-[13rem] sm:mb-0'>
             <div className='flex flex-col gap-2 items-center justify-center'>
                 <img src="/assets/home-trend-down.svg" alt="home-icon" />
                 <h3 className='text-[20px] font-semibold text-[#010F34]'>Let’s get to work</h3>

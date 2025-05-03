@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import QueryProvider from "./QueryProvider"; // ⬅️ We'll create this next
+import QueryProvider from "./QueryProvider";
+import { Toaster } from "sonner"; // ✅ Import Sonner
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lexend.variable} antialiased`}>
         <QueryProvider>
+          <Toaster position="top-right" richColors />
           {children}
         </QueryProvider>
       </body>

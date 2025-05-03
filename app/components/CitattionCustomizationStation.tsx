@@ -41,7 +41,7 @@ const CitationCustomizationStation = ({
 
 
     return (
-        <div className="p-6 w-full flex flex-col gap-[26px] max-w-3xl mx-auto">
+        <div className="p-6 w-full flex flex-col gap-[26px] max-w-3xl mx-auto mb-[13rem] sm:mb-0">
             <h3 className="text-[#010F34] text-[24px] font-semibold">Citation Customization Station</h3>
             <div className="h-[0.5px] bg-[#D8D8D8] w-full"></div>
 

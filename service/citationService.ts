@@ -13,7 +13,7 @@ export const processPaper = (data: any) =>
 
 export const getCitationSuggestions = (data: any) => apiClient.post('/api/v1/citations/get-citation', data, {
     headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': ' application/json',
     },
 })
 
