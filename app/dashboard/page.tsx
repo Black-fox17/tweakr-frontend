@@ -359,7 +359,7 @@ const Page = () => {
                                         setCitationIntensity={setCitationIntensity}
                                         onWorkMagic={handleWorkMagic}
                                     />}
-                                {/* {isPayment && <CostBreakDown />} */}
+                                {isPayment && <CostBreakDown />}
                                 {activeTab === 'references' && !isPayment && <CitationReferencesBox />}
                             </div>
                         </div>
