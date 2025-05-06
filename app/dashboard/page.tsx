@@ -19,8 +19,10 @@ import CreateAccountModal from '../components/CreateAccountModal'
 import CitationPerfectionAchieve from '../components/CitationPerfectionAchieve'
 import { getCitationSuggestions, processPaper, extractContent } from '@/service/citationService'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Citation } from '../components/CitationSuggestionBox'
 import CostBreakDown from '../components/CostBreakDown'
+import { annotateTextWithCitation } from '@/hooks/annotateTextWithCitations'
+import { toast } from 'sonner'
 
 const Page = () => {
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
@@ -29,14 +31,21 @@ const Page = () => {
     const [isCitationReady, setIsCitationReady] = useState(false)
     const [isRegisterReady, setIsRegisterReady] = useState(false)
     const [isCitationPerfectionAchieved, setIsCitationPerfectionAchievd] = useState(false)
-    const [isPayment, setIsPayment] = useState(true)
+    const [isPayment, setIsPayment] = useState(false)
     const [activeTab, setActiveTab] = useState<'suggestions' | 'settings' | 'references'>('suggestions')
     const [isUploading, setIsUploading] = useState(false);
     const [wordCount, setWordCount] = useState(0);
+    const [annotatedText, setAnnotatedText] = useState('');
+
 
     const [selectedStyleGuide, setSelectedStyleGuide] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [citationIntensity, setCitationIntensity] = useState('');
+
+
+    const [acceptedCitations, setAcceptedCitations] = useState<Citation[]>([]);
+    const [dismissedCitations, setDismissedCitations] = useState<Citation[]>([]);
+
 
     const formData = new FormData();
     if (uploadedFiles.length > 0) {
@@ -44,42 +53,17 @@ const Page = () => {
     }
 
 
-    const createFormDataForProcessPaper = () => {
-        const formData = new FormData();
-        if (uploadedFiles.length > 0) {
-            formData.append('file', uploadedFiles[0]);
-        }
-        formData.append('style', selectedStyleGuide);
-        formData.append('category', selectedCategory);
-        return formData;
-    };
-
     const createFormDataForGetCitationSuggestions = () => {
         const formData = new FormData();
-        if (uploadedFiles.length > 0) {
+        if (uploadedFiles.length > 0 && uploadedFiles[0]) {
             formData.append('input_file', uploadedFiles[0]);
         }
         return formData;
     };
 
 
-    const { mutate: runProcessPaper, isPending } = useMutation({
-        mutationFn: async () => {
-            const formData = createFormDataForProcessPaper();
 
-            return processPaper(formData);
-        },
-        onSuccess: () => {
-            console.log('Processing success 🎉');
-            setIsCitationReady(true);
-        },
-        onError: (error) => {
-            console.error('Processing failed 😢', error);
-        }
-    });
-
-
-    const { data, refetch, isFetching, error } = useQuery({
+    const { data, refetch, isFetching, error, isSuccess: suggestionSuccesful } = useQuery({
         queryKey: ['getCitationSuggestions'],
         queryFn: async () => {
             const formData = createFormDataForGetCitationSuggestions();
@@ -90,12 +74,28 @@ const Page = () => {
 
     if (error) {
         console.error('Failed to get suggestions:', error);
+        toast.error("Failed to get suggestions")
     }
+
+    useEffect(() => {
+        if (suggestionSuccesful && data) {
+            setIsCitationReady(true);
+        }
+    }, [suggestionSuccesful, data]);
+
+    useEffect(() => {
+        if (isCitationReady) {
+            const timeout = setTimeout(() => {
+                setIsRegisterReady(true);
+            }, 30000); // 
+
+            return () => clearTimeout(timeout);
+        }
+    }, [isCitationReady]);
 
     const handleWorkMagic = () => {
         if (!uploadedFiles[0]) return;
         refetch();
-        runProcessPaper();
         setActiveTab("suggestions");
     };
 
@@ -115,13 +115,6 @@ const Page = () => {
         }
     }, [isSuccess, extract]);
 
-    const getReferenceCount = (wordCount: number): string => {
-        if (wordCount <= 1000) return "10 references";
-        if (wordCount <= 3000) return "25 references";
-        if (wordCount <= 6000) return "30-40 references";
-        if (wordCount <= 9000) return "50 references";
-        return "80 references";
-    };
 
     useEffect(() => {
         if (uploadedFiles.length > 0) {
@@ -146,12 +139,78 @@ const Page = () => {
         }
     }, [isCitationReady]);
 
-    const referenceSuggestion = useMemo(() => getReferenceCount(wordCount), [wordCount]);
+    const suggestionsToDisplay = useMemo(() => {
+        return data?.data?.citations?.flat().filter((citation: Citation) =>
+            !acceptedCitations.find(c => c.id === citation.id) &&
+            !dismissedCitations.find(c => c.id === citation.id)
+        );
+    }, [data, acceptedCitations, dismissedCitations]);
+
+    const handleAcceptAll = () => {
+        if (!data?.data?.citations) return;
+        const flatCitations: Citation[] = data.data.citations.flat();
+
+        const newAccepted = flatCitations.filter((citation: Citation) =>
+            !acceptedCitations.find(c => c.id === citation.id) &&
+            !dismissedCitations.find(c => c.id === citation.id)
+        );
+
+        const updated = [...acceptedCitations, ...newAccepted];
+        setAcceptedCitations(updated);
+
+        if (extract?.data?.content) {
+            const rawText = extract.data.content;
+            const updatedText = annotateTextWithCitation(rawText, updated);
+            setAnnotatedText(updatedText);
+        }
+    };
+
+
+    const handleFinalize = () => {
+        setIsPayment(true)
+
+        // if (!annotatedText) return;
+
+        // const element = document.createElement("div");
+        // element.innerHTML = `<div style="font-family: Arial; white-space: pre-wrap;">${annotatedText}</div>`;
+
+        // const html2pdf = require("html2pdf.js");
+        // html2pdf().from(element).save("annotated-document.pdf");
+    };
+
+
+
+    const handleAcceptCitation = (citation: Citation) => {
+        // Prevent duplicates
+        setAcceptedCitations(prev => {
+            const alreadyAccepted = prev.some(c => c.id === citation.id);
+            if (alreadyAccepted) return prev;
+
+            const updated = [...prev, citation];
+
+            // Live re-annotate
+            if (extract?.data?.content) {
+                const rawText = extract.data.content;
+                const updatedText = annotateTextWithCitation(rawText, updated);
+                setAnnotatedText(updatedText);
+            }
+
+            return updated;
+        });
+    };
+
+
+    const handleDismissCitation = (citation: Citation) => {
+        setDismissedCitations(prev => [...prev, citation]);
+        setAcceptedCitations(prev => prev.filter(c => c.id !== citation.id));
+    };
+
+    console.log(annotatedText)
 
     return (
         <>
             {isCitationReady && <CitationIsReadyModal />}
-            {isRegisterReady && <CreateAccountModal setIsRegisterReady={setIsRegisterReady} setIsPayment={setIsPayment} />}
+            {isRegisterReady && <CreateAccountModal setIsRegisterReady={setIsRegisterReady} />}
             {isCitationPerfectionAchieved && <CitationPerfectionAchieve />}
             <div className="relative w-full h-screen flex bg-white transition-all duration-500">
                 {/* Main Content Section (Navbar + Page Body) */}
@@ -228,6 +287,18 @@ const Page = () => {
                                     />
                                 ))}
                             </div>
+                        ) : isCitationPerfectionAchieved ? (
+                            <div className="py-4 overflow-y-scroll w-full">
+                                <p className="text-[#545454] whitespace-pre-wrap">
+                                    {annotatedText}
+                                </p>
+                            </div>
+                            // ) : annotatedText ? (
+                            //     <div className="py-4 overflow-y-scroll w-full">
+                            //         <p className="text-[#545454] whitespace-pre-wrap">
+                            //             {annotatedText}
+                            //         </p>
+                            //     </div>
                         ) : (
                             <div className="py-4 overflow-y-scroll w-full">
                                 <p className="text-[#545454] whitespace-pre-wrap">
@@ -268,7 +339,16 @@ const Page = () => {
                             </nav>
 
                             <div className="overflow-y-auto flex-1">
-                                {activeTab === 'suggestions' && !isPayment && <CitationSuggestionBox suggestions={data?.data.citations} referenceSuggestion={referenceSuggestion} />}
+                                {activeTab === 'suggestions' && !isPayment &&
+                                    <CitationSuggestionBox
+                                        suggestions={suggestionsToDisplay}
+                                        onAccept={handleAcceptCitation}
+                                        onDismiss={handleDismissCitation}
+                                        acceptedCitations={acceptedCitations}
+                                        onAcceptAll={handleAcceptAll}
+                                        onFinalize={handleFinalize}
+                                    />
+                                }
                                 {activeTab === 'settings' && !isPayment &&
                                     <CitattionCustomizationStation
                                         selectedStyleGuide={selectedStyleGuide}
@@ -279,7 +359,7 @@ const Page = () => {
                                         setCitationIntensity={setCitationIntensity}
                                         onWorkMagic={handleWorkMagic}
                                     />}
-                                {isPayment && <CostBreakDown />}
+                                {/* {isPayment && <CostBreakDown />} */}
                                 {activeTab === 'references' && !isPayment && <CitationReferencesBox />}
                             </div>
                         </div>

@@ -6,10 +6,9 @@ import { Eye, EyeClosed } from 'lucide-react';
 
 type CreateAccountModalProps = {
     setIsRegisterReady: (ready: boolean) => void;
-    setIsPayment: (ready: boolean) => void;
 };
 
-const CreateAccountModal = ({ setIsRegisterReady, setIsPayment }: CreateAccountModalProps) => {
+const CreateAccountModal = ({ setIsRegisterReady }: CreateAccountModalProps) => {
     const [isLogin, setIsLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -34,7 +33,6 @@ const CreateAccountModal = ({ setIsRegisterReady, setIsPayment }: CreateAccountM
         onSuccess: (data) => {
             toast.success('Account created successfully!');
             setIsRegisterReady(false);
-            setIsPayment(true)
         },
         onError: (err: any) => {
             const detail = err?.response?.data?.detail;
@@ -50,7 +48,6 @@ const CreateAccountModal = ({ setIsRegisterReady, setIsPayment }: CreateAccountM
         onSuccess: (data) => {
             toast.success('Login successful!');
             setIsRegisterReady(false);
-            setIsPayment(true)
         },
         onError: (err: any) => {
             const detail = err?.response?.data?.detail;
