@@ -16,7 +16,6 @@ const Hero = () => {
             {isRegisterReady && (
                 <CreateAccountModal
                     setIsRegisterReady={setIsRegisterReady}
-                    setIsPayment={setIsPayment}
                 />
             )}
             <div className='bg-[#010F34] border-b border-b-[#DEE5ED] rounded-b-[50px] p-4 sm:p-8 text-white flex flex-col items-center justify-center shadow-xl relative'>
