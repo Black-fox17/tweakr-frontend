@@ -13,8 +13,8 @@ interface FlutterwaveButtonProps {
 const FlutterwaveButton: React.FC<FlutterwaveButtonProps> = ({
     email,
     amount,
-    name,
-    phone,
+    name = `customer ${email}`,
+    phone = `phone ${email}`,
 }) => {
     const config = {
         public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY!,
@@ -35,8 +35,6 @@ const FlutterwaveButton: React.FC<FlutterwaveButtonProps> = ({
     };
 
     const handleFlutterPayment = useFlutterwave(config);
-    console.log('Flutterwave Public Key:', process.env.PAYSTACK_PUBLIC_KEY);
-
     return (
         <button
             onClick={() => {

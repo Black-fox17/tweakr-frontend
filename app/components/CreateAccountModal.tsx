@@ -32,6 +32,7 @@ const CreateAccountModal = ({ setIsRegisterReady }: CreateAccountModalProps) => 
         mutationFn: register,
         onSuccess: (data) => {
             toast.success('Account created successfully!');
+            localStorage.setItem('userEmail', formData.email);
             setIsRegisterReady(false);
         },
         onError: (err: any) => {
@@ -47,6 +48,7 @@ const CreateAccountModal = ({ setIsRegisterReady }: CreateAccountModalProps) => 
         mutationFn: login,
         onSuccess: (data) => {
             toast.success('Login successful!');
+            localStorage.setItem('userEmail', formData.email);
             setIsRegisterReady(false);
         },
         onError: (err: any) => {
@@ -134,7 +136,7 @@ const CreateAccountModal = ({ setIsRegisterReady }: CreateAccountModalProps) => 
                                     className='text-[#9E9E9E] text-[18px] bg-[#FAFAFA] border border-[#FAFAFA] p-4 rounded-[10px] w-full' />
                                 <div
                                     className='w-[20px] h-[20px] absolute right-4 top-[18px] cursor-pointer'
-                                    onClick={() => setShowConfirm(!showConfirm)}
+                                    onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showConfirm ? <Eye /> : <EyeClosed />}
                                 </div>

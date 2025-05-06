@@ -32,7 +32,7 @@ const Page = () => {
     const [isRegisterReady, setIsRegisterReady] = useState(false)
     const [isCitationPerfectionAchieved, setIsCitationPerfectionAchievd] = useState(false)
     const [isPayment, setIsPayment] = useState(false)
-    const [activeTab, setActiveTab] = useState<'suggestions' | 'settings' | 'references'>('suggestions')
+    const [activeTab, setActiveTab] = useState<'suggestions' | 'settings' | 'references'>('settings')
     const [isUploading, setIsUploading] = useState(false);
     const [wordCount, setWordCount] = useState(0);
     const [annotatedText, setAnnotatedText] = useState('');
@@ -205,7 +205,6 @@ const Page = () => {
         setAcceptedCitations(prev => prev.filter(c => c.id !== citation.id));
     };
 
-    console.log(annotatedText)
 
     return (
         <>
@@ -316,18 +315,18 @@ const Page = () => {
                         <div className="w-full h-full flex flex-col">
                             <nav className="p-4 bg-white hidden lg:flex items-center justify-between border-b border-b-[#EDEDED] overflow-x-scroll">
                                 <button
-                                    className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex items-center gap-2 rounded-[8px] justify-start px-4 py-2`}
-                                    onClick={() => setActiveTab('suggestions')}
-                                >
-                                    <Zap />
-                                    Suggestions
-                                </button>
-                                <button
                                     className={`${activeTab === 'settings' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 items-center flex gap-2 justify-start rounded-[8px] py-2 px-4 w-[144px]`}
                                     onClick={() => setActiveTab('settings')}
                                 >
                                     <Settings />
                                     Settings
+                                </button>
+                                <button
+                                    className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex items-center gap-2 rounded-[8px] justify-start px-4 py-2`}
+                                    onClick={() => setActiveTab('suggestions')}
+                                >
+                                    <Zap />
+                                    Suggestions
                                 </button>
                                 <button
                                     className={`${activeTab === 'references' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex items-center justify-start gap-2 rounded-[8px] px-4 py-2`}
@@ -359,7 +358,11 @@ const Page = () => {
                                         setCitationIntensity={setCitationIntensity}
                                         onWorkMagic={handleWorkMagic}
                                     />}
-                                {isPayment && <CostBreakDown />}
+                                {isPayment && <CostBreakDown
+                                    wordCount={wordCount}
+                                    acceptedCitation={acceptedCitations.length}
+                                    setIsPayment={setIsPayment}
+                                />}
                                 {activeTab === 'references' && !isPayment && <CitationReferencesBox />}
                             </div>
                         </div>
@@ -369,18 +372,18 @@ const Page = () => {
                 {showAssistant && (
                     <nav className="lg:hidden py-2 px-4 fixed bottom-0 left-0 z-50 bg-white flex items-center justify-between border-b border-b-[#EDEDED] w-full">
                         <button
-                            className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex flex-col items-center gap-2 rounded-[8px] justify-start px-4 py-2 text-[14px]`}
-                            onClick={() => setActiveTab('suggestions')}
-                        >
-                            <Zap className='w-[24px] h-[24px]' />
-                            Suggestions
-                        </button>
-                        <button
                             className={`${activeTab === 'settings' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 items-center flex-col flex gap-2 justify-start rounded-[8px] py-2 px-4 w-[144px]`}
                             onClick={() => setActiveTab('settings')}
                         >
                             <Settings className='w-[24px] h-[24px]' />
                             Settings
+                        </button>
+                        <button
+                            className={` ${activeTab === 'suggestions' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex flex-col items-center gap-2 rounded-[8px] justify-start px-4 py-2 text-[14px]`}
+                            onClick={() => setActiveTab('suggestions')}
+                        >
+                            <Zap className='w-[24px] h-[24px]' />
+                            Suggestions
                         </button>
                         <button
                             className={`${activeTab === 'references' ? 'bg-[#E6E7EB] text-[#010F34]' : 'text-[#8A91A2]'} transition-all duration-300 flex-col flex items-center justify-start gap-2 rounded-[8px] px-4 py-2`}
