@@ -13,15 +13,20 @@ import {
     SelectValue
 } from '@/components/ui/select';
 
+// It's good practice to define or import this type if it's used in multiple places.
+// If CitationStyle is defined and exported from page.tsx or a shared types file, import it.
+// For now, let's assume it's defined in page.tsx and we'll use a compatible type here.
+type CitationStyleType = 'APA' | 'MLA' | 'Chicago';
 
 interface Props {
-    selectedStyleGuide: string;
-    setSelectedStyleGuide: (value: string) => void;
+    selectedStyleGuide: CitationStyleType;
+    setSelectedStyleGuide: (value: CitationStyleType) => void;
     selectedCategory: string;
     setSelectedCategory: (value: string) => void;
     citationIntensity: string;
     setCitationIntensity: (value: string) => void;
     onWorkMagic: () => void;
+    isProcessing?: boolean;
 }
 
 const CitationCustomizationStation = ({
@@ -32,6 +37,7 @@ const CitationCustomizationStation = ({
     citationIntensity,
     setCitationIntensity,
     onWorkMagic,
+    isProcessing,
 }: Props) => {
 
     const { data: categories, isLoading } = useQuery({
@@ -48,7 +54,7 @@ const CitationCustomizationStation = ({
             {/* Style Guide */}
             <div className="flex flex-col gap-2">
                 <label className="text-[18px] font-semibold text-[#212121]">Which Style Guide Is Bossing You Around?</label>
-                <Select value={selectedStyleGuide} onValueChange={(value) => setSelectedStyleGuide(value)}>
+                <Select value={selectedStyleGuide} onValueChange={(value) => setSelectedStyleGuide(value as CitationStyleType)}>
                     <SelectTrigger className="border-[#FAFAFA] p-4 rounded-[10px] text-[#9E9E9E] text-[18px]">
                         <SelectValue placeholder="Choose style guide..." />
                     </SelectTrigger>
